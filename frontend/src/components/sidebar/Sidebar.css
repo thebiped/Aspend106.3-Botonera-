@@ -1,0 +1,132 @@
+.sidebar {
+  width: 250px;
+  background: #06112e;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  box-shadow: 0 0 12px 0 rgba(21, 0, 255, 0.3);
+  border-right: 1px solid #1740a1;
+  position: relative;
+  z-index: 2;
+}
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 67px;
+  padding: 19px 0;
+  border-bottom: 1px solid #27489e;
+  justify-content: center;
+}
+.sidebar-logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sidebar-logo-text {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #b536ff;
+  letter-spacing: 0.5px;
+}
+.sidebar-nav {
+  flex: 1 1 auto;
+  padding: 24px;
+}
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border-radius: 8px;
+  padding: 0 18px;
+  height: 42px;
+  font-size: 16px;
+  color: #b8b8b8;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.nav-item-active,
+.nav-item:hover {
+  background: #011a5d;
+  color: #fff;
+  border: 1px solid #192e62;
+}
+.nav-icon {
+  display: flex;
+  align-items: center;
+  color: #b536ff;
+}
+.nav-item-active .nav-icon,
+.nav-item:hover .nav-icon {
+  color: #fff;
+}
+.nav-label {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 15px;
+  border-top: 1px solid #36528f;
+  background: none;
+}
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b536ff 60%, #401d8d 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 0 8px #192e62;
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+.user-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user-role {
+  font-size: 12px;
+  color: #b8b8b8;
+  font-weight: 400;
+}
+.user-settings {
+  background: none;
+  border: none;
+  color: #b536ff;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.user-settings:hover {
+  background: #1a1a3a;
+}

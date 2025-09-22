@@ -1,80 +1,70 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Home, Radio, Users, Volume2, Settings,AudioLines, Activity} from "lucide-react";
 import "../assets/css/Dashboard.css";
-import { Home, Radio, Volume2, Broadcast } from "lucide-react";
+import Sidebar from "./sidebar/Sidebar";
 
-const Dashboard = () => {
+export default function Dashboard() {
   return (
-    <div className="dashboard">
+    <div className="dashboard-root">
       {/* Sidebar */}
-      <aside className="sidebar">
-        <h1 className="brand">Aspen 102.6</h1>
-        <nav>
-          <ul>
-            <li>
-              <a href="#">
-                <Home size={20} /> Inicio
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <Radio size={20} /> Mis programas
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <Volume2 size={20} /> Mis FX
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <Broadcast size={20} /> FX Institucionales
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <div className="user">
-          <img src="https://via.placeholder.com/40" alt="avatar" />
-          <span>Juan Pérez</span>
-        </div>
-      </aside>
+      <Sidebar />
 
-      {/* Main content */}
-      <main className="main">
-        <h2 className="main-title">Resumen de tu actividad y recursos</h2>
-
-        {/* KPI Cards */}
-        <div className="kpi-container">
-          <div className="kpi-card">
-            <Radio size={32} />
-            <p>Programas Asignados</p>
-            <h3>3</h3>
-          </div>
-          <div className="kpi-card">
-            <Volume2 size={32} />
-            <p>FX Personales</p>
-            <h3>12</h3>
-          </div>
-          <div className="kpi-card">
-            <Broadcast size={32} />
-            <p>FX Institucionales</p>
-            <h3>156</h3>
-          </div>
-        </div>
-
-        {/* Recent Activity */}
-        <div className="activity-panel">
-          <h3>Mi Actividad Reciente</h3>
-          <ul>
-            <li>Reprodujiste FX 'Intro Personal' en Programa Matutino</li>
-            <li>Agregaste nuevo FX 'Mi Transición Especial'</li>
-            <li>Editaste FX 'Efecto Personal 2' - duración actualizada</li>
-            <li>Reprodujiste FX 'Separador Comercial' institucional</li>
-            <li>Creaste nuevo FX 'Sonido Único' para uso personal</li>
-          </ul>
-        </div>
-      </main>
+      {/* Main Container */}
+      <div className="container">
+        <div className="container-bg" />
+        <header className="header">
+          <h1 className="title">Resumen de Actividad</h1>
+          <p className="description">
+            Aquí encontrarás un panorama general de tus programas, efectos y la
+            actividad más reciente dentro del sistema.
+          </p>
+        </header>
+        <main className="main-container">
+          <section className="section-stats">
+            <div className="stat-card">
+              <div className="stat-icon stat-icon-blue">
+                <Radio size={30} />
+              </div>
+              <div className="stat-label">Total de Programas</div>
+              <div className="stat-value">24</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-icon stat-icon-purple">
+                <Users size={30} />
+              </div>
+              <div className="stat-label">Total de Usuarios</div>
+              <div className="stat-value">18</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-icon stat-icon-pink">
+                <Volume2 size={30} />
+              </div>
+              <div className="stat-label">Efectos Institucionales</div>
+              <div className="stat-value">156</div>
+            </div>
+          </section>
+          <section className="section-activity">
+            <div className="activity-title">
+              <Activity size={30} className="activity-icon" />
+              Actividad Reciente
+            </div>
+            <ul className="activity-list">
+              <li className="activity-pill">
+                Se agregó un FX a Programa Matutino
+              </li>
+              <li className="activity-pill">
+                Usuario Juan Pérez creado como Operador
+              </li>
+              <li className="activity-pill">FX 'Intro News' actualizado</li>
+              <li className="activity-pill">Programa 'Tarde Musical' editado</li>
+              <li className="activity-pill">
+                Nuevo efecto personal agregado por María
+              </li>
+            </ul>
+          </section>
+        </main>
+      </div>
     </div>
   );
-};
-
-export default Dashboard;
+}

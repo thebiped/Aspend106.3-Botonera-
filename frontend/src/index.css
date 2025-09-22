@@ -4,10 +4,75 @@ body{
   box-sizing: border-box;
 }
 
+.dashboard-root {
+  min-height: 100vh;
+  display: flex;
+  font-family: "Roboto", Arial, sans-serif;
+}
+
+.container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  gap: 40px;
+  padding: 24px;
+  background: #0C0A25;
+  overflow: hidden;
+}
+
+.container-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("../img/fondo-container.png") no-repeat center center/cover;
+  filter: blur(2px) brightness(0.5) contrast(4);
+  z-index: 1;
+}
+
+.container-bg::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(20deg, #0e024e 0% ,#000b29 100%);
+  filter: hue-rotate(20deg) saturate(5); 
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.main-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 24px;
+}
+
+
 @font-face {
   font-family: 'koh santepheap';
   src: url(./assets/font/KohSantepheap-Regular.ttf);
 }
+
+@font-face {
+  font-family: "Koh Santepheap";
+  src: url("../font/KohSantepheap-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Koh Santepheap";
+  src: url("../font/KohSantepheap-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 
 /*----------Keyframes Animations------------*/
