@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
 const bcrypt = require('bcrypt');
 
 // Ruta para registrar usuario
 router.post('/register', (req, res) => {
   const { n_usuario, contraseña, tipo, gmail } = req.body;
+  const db = req.db;
   db.run(
     `INSERT INTO usuario (n_usuario, contraseña, tipo, gmail) VALUES (?, ?, ?, ?)`,
     [n_usuario, contraseña, tipo, gmail],
@@ -19,6 +19,7 @@ router.post('/register', (req, res) => {
 // Ruta para login
 router.post('/login', (req, res) => {
   const { n_usuario, contraseña } = req.body;
+  const db = req.db;
   db.get(
     `SELECT * FROM usuario WHERE n_usuario = ? AND contraseña = ?`,
     [n_usuario, contraseña],
