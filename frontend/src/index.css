@@ -1,4 +1,4 @@
-body{
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -6,20 +6,29 @@ body{
 
 .dashboard-root {
   min-height: 100vh;
-  display: flex;
-  font-family: "Roboto", Arial, sans-serif;
+  display: flex;          /* Sidebar + Container */
+  font-family: "Roboto";
 }
 
 .container {
   position: relative;
-  min-height: 100vh;
+  flex: 1;                /* ✅ ocupa el espacio restante a la derecha */
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  gap: 10px;
+  padding: 48px;
+  background: #0c0a25;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.main-container {
+  flex: 1;                /* ✅ ocupa el espacio vertical sobrante */
+  display: flex;
+  flex-direction: column;
   gap: 40px;
   padding: 24px;
-  background: #0C0A25;
-  overflow: hidden;
+  z-index: 2;
 }
 
 .container-bg {
@@ -28,7 +37,8 @@ body{
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("../img/fondo-container.png") no-repeat center center/cover;
+  background: url("./assets/img/fondo-container.png") no-repeat center
+    center/cover;
   filter: blur(2px) brightness(0.5) contrast(4);
   z-index: 1;
 }
@@ -40,8 +50,8 @@ body{
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(20deg, #0e024e 0% ,#000b29 100%);
-  filter: hue-rotate(20deg) saturate(5); 
+  background: linear-gradient(20deg, #0e024e 0%, #000b29 100%);
+  filter: hue-rotate(20deg) saturate(5);
   opacity: 0.5;
   z-index: 1;
 }
@@ -52,30 +62,14 @@ body{
   flex-direction: column;
   gap: 40px;
   padding: 24px;
+  z-index: 2;
 }
 
-
 @font-face {
-  font-family: 'koh santepheap';
+  font-family: "koh santepheap";
   src: url(./assets/font/KohSantepheap-Regular.ttf);
 }
 
-@font-face {
-  font-family: "Koh Santepheap";
-  src: url("../font/KohSantepheap-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Koh Santepheap";
-  src: url("../font/KohSantepheap-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-
-
-
-/*----------Keyframes Animations------------*/
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -119,7 +113,6 @@ body{
     transform: translateY(0);
   }
 }
-
 
 @keyframes fadeScaleUp {
   0% {
@@ -165,3 +158,9 @@ body{
     transform: translateX(0) scale(1);
   }
 }
+@keyframes wave {
+  50% {
+    transform: scale(0.9);
+  }
+}
+

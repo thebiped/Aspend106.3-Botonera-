@@ -1,0 +1,144 @@
+
+/*  Header general */
+.header {
+  margin-bottom: 24px;
+}
+.title {
+  font-family: "Koh Santepheap", sans-serif;
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.description {
+  font-size: 1.1rem;
+  color: #b8b8b8;
+}
+
+/*  Sección de FX */
+.fx-section {
+  margin-top: 20px;
+  padding: 24px;
+  background: rgba(41, 0, 106, 0.4);
+  backdrop-filter: blur(18px);
+  border-radius: 18px;
+  border: 3px solid rgba(255, 123, 211, 0.4);
+  box-shadow: 0 0 12px 0 rgba(21, 0, 255, 0.3),
+    inset 0 0 24px 0 rgba(149, 0, 255, 0.4);
+}
+
+/*  Título de sección FX */
+.fx-section-title {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 18px;
+}
+
+/*  Grid de FX cards */
+.fx-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 10px;
+}
+
+/*  Tarjeta FX */
+.fx-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 1.2rem 1rem;
+  color: #fff;
+  background: rgba(56, 2, 145, 0.8);
+  backdrop-filter: blur(18px);
+  border-radius: 12px;
+  border: 1.5px solid #3b16e1;
+  box-shadow: 0 0 0.8rem 0 rgba(51, 25, 98, 0.25),
+    inset 0 0 1rem 0 #200a44;
+}
+
+/*  Header de FX card */
+.fx-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.fx-card-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  color: #1a8cff;
+  background: rgba(98, 0, 255, 0.25);
+  border: 1px solid #27489e;
+  border-radius: 8px;
+}
+.fx-card-title {
+  font-family: "Inter", Arial, sans-serif;
+}
+
+/*  Info de FX */
+.fx-card-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fx-card-duration {
+  font-size: 14px;
+  color: #b8b8b8;
+  margin-right: 8px;
+}
+.fx-card-tags {
+  display: flex;
+  gap: 8px;
+}
+.fx-tag {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+.fx-tag-intro { background: #e64a4a; }
+.fx-tag-noticias { background: #31ff79; }
+.fx-tag-separator { background: #54a1ff; }
+.fx-tag-general { background: #b536ff; }
+.fx-tag-otro { background: #b8b8b8; color: #181c3a; }
+.fx-tag-id { background: #1686e1; }
+.fx-tag-institucional { background: #e6ba4a; color: #181c3a; }
+.fx-tag-deportes { background: #ff329d; }
+.fx-tag-transition { background: #54a1ff; }
+
+/* 🔹 Botón reproducir FX */
+.fx-card-play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 24px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  background: #27489e;
+  border: 2px solid #006ac0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.fx-card-play:hover {
+  background: #b536ff;
+  color: #fff;
+}
+.fx-card-play.playing {
+  background: #b536ff;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 0 8px #b536ff;
+}

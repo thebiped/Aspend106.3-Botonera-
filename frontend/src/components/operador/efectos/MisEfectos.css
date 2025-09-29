@@ -1,0 +1,138 @@
+
+/* Header principal */
+.header {
+  margin-bottom: 24px;
+}
+.title {
+  margin-bottom: 8px;
+  font-family: "Koh Santepheap", sans-serif;
+  font-size: 2.2rem;
+  color: #fff;
+}
+.description {
+  color: #b8b8b8;
+  font-size: 1.1rem;
+}
+
+/* Sección FX */
+/* Biblioteca FX */
+.me-library {
+  padding: 24px;
+  background: rgba(41, 0, 106, 0.4);
+  backdrop-filter: blur(18px);
+  border: 3px solid rgba(255, 123, 211, 0.4);
+  border-radius: 18px;
+  box-shadow: 0 0 12px rgba(21, 0, 255, 0.3), inset 0 0 24px rgba(149, 0, 255, 0.4);
+  color: #fff;
+}
+
+/* Header de la biblioteca */
+.me-library-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.me-add-btn {
+  background: #1677e1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.me-add-btn:hover { background: #1a8fff; }
+
+/* Lista FX */
+.me-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Item FX */
+.me-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+  transition: background 0.2s;
+}
+.me-item:hover { background: rgba(255, 255, 255, 0.1); }
+
+/* Botón play */
+.me-play-btn {
+  border: none;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s;
+}
+.me-play-btn.playing { background: #1677e1; }
+.me-play-btn:hover { transform: scale(1.1); background: rgba(255,255,255,0.3); }
+
+/* Icono y duración */
+.me-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(75, 30, 133, 0.3);
+  border-radius: 10px;
+  width: 60px;
+  height: 60px;
+}
+.me-duration {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(0,0,0,0.7);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  color: #fff;
+}
+
+/* Info */
+.me-info {
+  flex-grow: 1;
+}
+.me-title { margin: 0; font-size: 1rem; font-weight: 600; }
+.me-meta { margin: 0; font-size: 0.8rem; opacity: 0.7; display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* Etiquetas */
+.me-label.intro { color: #1a8cff; font-weight: bold; }
+.me-label.transition { color: #aa22ff; font-weight: bold; }
+.me-label.special { color: #e1a316; font-weight: bold; }
+.me-label.separator { color: #e64a4a; font-weight: bold; }
+
+/* Acciones */
+.me-actions {
+  display: flex;
+  gap: 6px;
+}
+.me-edit, .me-delete {
+  border: none;
+  background: rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
+  color: #fff;
+  transition: background 0.2s, transform 0.2s;
+}
+.me-edit:hover, .me-delete:hover { background: rgba(255,255,255,0.25); transform: scale(1.1); }
+
+/* Vacío */
+.me-empty {
+  text-align: center;
+  color: #b8b8b8;
+  font-style: italic;
+  padding: 16px;
+}

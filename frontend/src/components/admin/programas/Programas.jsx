@@ -1,33 +1,35 @@
 import React, { useState } from "react";
-import {
-  Home,
-  Radio,
-  Users,
-  Volume2,
-  Plus,
-  Search,
-  Play,
-  AudioLines,
-  Settings,
-} from "lucide-react";
-import "../../../assets/css/Admins/Programas.css";
-import { Link } from "react-router-dom";
 import Sidebar from "../../sidebar/Sidebar";
-import FxInstitucionales from "./fx/FxInstitucionales";
-import FxProgramas from "./fx/FxProgramas";
-import Filter from "./Filter/Filter";
+import { Plus } from "lucide-react";
+import FxInstitucionales from "./fx/institucional/FxInstitucionales";
+import FxProgramas from "./fx/programa/FxProgramas";
+import AddFxModal from "./modal/AddFxModal";
+import "./Programas.css";
 
 function Programas() {
   const [tab, setTab] = useState("institucionales");
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  const rol =
+    typeof window !== "undefined" && window.rol
+      ? window.rol
+      : typeof window !== "undefined" && window.userType
+      ? window.userType
+      : "admin";
+
+  const handleAddFx = (fx) => {
+    setShowModal(false);
+    // lógica para guardar FX
+  };
 
   return (
     <div className="dashboard-root">
-      <Sidebar active="programas" />
+      <Sidebar active="programas" userType={rol} />
+
+      {/* CAMBIO: className ahora es programs-container */}
       <div className="container">
         <div className="container-bg" />
-        {/* Header */}
+
         <div className="programs-header">
           <div className="programs-header-info">
             <h1 className="programs-title">Gestión de Programas</h1>
@@ -36,34 +38,44 @@ function Programas() {
               aquí puedes ver su estado y organizar los recursos asociados.
             </p>
           </div>
-          <button className="programs-add-btn">
-            <Plus size={18} /> Agregar FX
-          </button>
         </div>
-        {/* Filtros */}
+
+        {/* TABS */}
+        <div className="programs-tabs">
+          <div
+            className={`programs-tab ${
+              tab === "institucionales" ? "programs-tab-active" : ""
+            }`}
+            onClick={() => setTab("institucionales")}
+          >
+            Institucionales
+          </div>
+          <div
+            className={`programs-tab ${
+              tab === "programas" ? "programs-tab-active" : ""
+            }`}
+            onClick={() => setTab("programas")}
+          >
+            Programas
+          </div>
+        </div>
+
+        {/* CONTENIDO */}
         <main className="main-container">
-          <Filter
-            search={search}
-            setSearch={setSearch}
-            category={category}
-            setCategory={setCategory}
-            tab={tab}
-            setTab={setTab}
-          />
-          {tab === "institucionales" ? (
-            <FxInstitucionales
-              search={search}
-              category={category}
-              setCategory={setCategory}
-            />
-          ) : (
-            <FxProgramas
-              search={search}
-              category={category}
-              setCategory={setCategory}
-            />
-          )}
+          <div className="programs-lists">
+            {tab === "institucionales" ? (
+              <FxInstitucionales rol={rol} />
+            ) : (
+              <FxProgramas rol={rol} />
+            )}
+          </div>
         </main>
+
+        <AddFxModal
+          open={showModal}
+          onClose={() => setShowModal(false)}
+          onSave={handleAddFx}
+        />
       </div>
     </div>
   );

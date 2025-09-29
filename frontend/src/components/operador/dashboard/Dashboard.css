@@ -1,0 +1,212 @@
+/* Contenedor principal del dashboard */
+.operador-dashboard-root {
+  min-height: 100vh;
+  display: flex;
+  background: linear-gradient(135deg, #0c0a25 60%, #181c3a 100%);
+}
+
+/* Sidebar lateral */
+.operador-sidebar {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #06112e;
+  border-right: 1px solid #1686e1;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Logo del sidebar */
+.operador-sidebar-logo {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #9859ff;
+  border-bottom: 1px solid #27489e;
+}
+
+.operador-logo-icon {
+  font-size: 1.5rem;
+}
+
+.operador-logo-text {
+  padding: 4px 12px;
+  font-family: "Koh Santepheap", sans-serif;
+  font-size: 1.2rem;
+  color: #fff;
+  background: #b536ff;
+  border-radius: 8px;
+}
+
+/* Menú de navegación */
+.operador-nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px;
+}
+
+.operador-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  padding: 10px 18px;
+  color: #fff;
+  background: none;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.operador-nav-item.active,
+.operador-nav-item:hover {
+  color: #b536ff;
+  background: #011a5d;
+  border: 1px solid #1686e1;
+}
+
+/* Información del usuario */
+.operador-sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 15px;
+  background: #06112e;
+  border-top: 1px solid #36528f;
+}
+
+.operador-user-avatar {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  background: #9859ff;
+  border-radius: 50%;
+}
+
+.operador-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.operador-user-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.operador-user-role {
+  font-size: 0.9rem;
+  color: #b8b8b8;
+}
+
+/* Contenedor principal de contenido */
+.operador-dashboard-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 40px;
+  padding: 40px 24px;
+  background: #0c0a25;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Header del dashboard */
+.operador-dashboard-header {
+  margin-bottom: 10px;
+}
+
+.operador-dashboard-title {
+  margin-bottom: 8px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.operador-dashboard-desc {
+  font-size: 1.1rem;
+  color: #b8b8b8;
+}
+
+/* Cards de resumen */
+.operador-dashboard-cards {
+  display: flex;
+  gap: 40px;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.operador-dashboard-card {
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 30px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #192e62 80%, #9859ff 100%);
+  border-radius: 18px;
+  border: 2px solid #b536ff;
+  box-shadow: 0 4px 12px rgba(21, 0, 255, 0.3);
+}
+
+.card-programas { border-color: #9859ff; }
+.card-fx { border-color: #e64a4a; }
+.card-institucionales { border-color: #b536ff; }
+
+.operador-card-icon { font-size: 2.2rem; margin-bottom: 8px; }
+.operador-card-label { font-size: 1.1rem; color: #b8b8b8; margin-bottom: 6px; }
+.operador-card-value { font-size: 2rem; font-weight: 700; color: #fff; }
+
+/* Actividad reciente */
+.operador-dashboard-actividad {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 30px;
+  color: #fff;
+  background: linear-gradient(135deg, #192e62 80%, #9859ff 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(21, 0, 255, 0.3);
+}
+
+.operador-actividad-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.operador-actividad-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.operador-actividad-list li {
+  padding: 10px 18px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: #b8b8b8;
+  background: #011a5d;
+  border-radius: 8px;
+}

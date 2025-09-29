@@ -1,0 +1,164 @@
+/* Contenedor principal de la sección de usuarios */
+.users-section {
+  padding: 24px;
+  background: linear-gradient(
+    to bottom right,
+    rgba(75, 30, 133, 1),
+    rgba(75, 30, 133, 0.01)
+  ); 
+  backdrop-filter: blur(12px); 
+  border: 2px solid rgba(75, 30, 133, 0.5); 
+  border-radius: 1.5em; 
+  box-shadow: 0 0 12px rgba(75, 30, 133, 0.3),inset 0 0 12px rgba(75, 30, 133, 0.1);
+  z-index: 2;
+}
+
+
+.programs-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #b536ff, #401d8d);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.programs-add-btn:hover {
+  box-shadow: 0 0 12px rgba(181, 54, 255, 0.6);
+  transform: scale(1.05);
+}
+
+/* Header con título y filtros */
+.users-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.users-section-title {
+  font-family: "Roboto";
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* Filtros de búsqueda y rol */
+.users-filters {
+  display: flex;
+  gap: 10px;
+}
+
+.users-search,
+.users-select {
+  padding: 8px 18px;
+  font-size: 16px;
+  font-family: "Roboto";
+  color: #fff;
+  background: rgba(56, 2, 145, 0.8);
+  border: 1.5px solid #3b16e1;
+  border-radius: 6px;
+  outline: none;
+}
+
+/* Tabla de usuarios */
+.users-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.users-table thead tr {
+  background: rgba(86, 1, 223, 0.25);
+  text-shadow: 0 0 4px rgba(181, 54, 255, 0.3);
+}
+
+.users-table th {
+  padding: 14px 18px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #b536ff;
+  text-align: left;
+}
+.users-table thead th {
+  padding: 16px 20px;
+  font-weight: 800;
+  font-size: 17px;
+  color: #e6b3ff;
+  letter-spacing: 0.5px;
+}
+
+.users-table tbody tr:nth-child(even) td {
+  background: rgba(43, 0, 110, 0.25);
+}
+
+.users-table tbody tr {
+  transition: all 0.3s ease;
+}
+.users-table tbody tr:hover td {
+  background: rgba(86, 1, 223, 0.3);
+  box-shadow: 0 2px 12px rgba(181, 54, 255, 0.3);
+  transform: translateY(-2px);
+}
+.users-table tbody tr {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInRows 0.5s forwards;
+}
+
+.users-table td {
+  padding: 12px 18px;
+  font-weight: 500;
+  color: #fff;
+  background: rgba(43, 0, 110, 0.15);
+  border-radius: 10px;
+}
+
+.users-table tbody tr:hover td {
+  background: rgba(86, 1, 223, 0.25);
+  box-shadow: 0 0 10px rgba(181, 54, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.users-role {
+  padding: 4px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
+
+.users-role-operador { background: #1a8cff; }
+.users-role-jefedeoperadores { background: #1686e1; }
+.users-role-productor { background: #b536ff; }
+
+.users-edit-btn {
+  color: #b536ff;
+  font-weight: 600;
+  font-size: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.users-edit-btn:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-shadow: 0 0 4px rgba(181, 54, 255, 0.5);
+}
+.users-role-operador { background: #1a8cff; }
+.users-role-jefedeoperadores { background: #1686e1; }
+.users-role-productor { background: #b536ff; }
+@keyframes fadeInRows {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
