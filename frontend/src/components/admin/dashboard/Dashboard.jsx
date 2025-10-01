@@ -1,4 +1,4 @@
-import React from "react";
+import Sidebar from "../../sidebar/Sidebar";
 import { Link } from "react-router-dom";
 import {
   Home,
@@ -9,16 +9,13 @@ import {
   AudioLines,
   Activity,
 } from "lucide-react";
-import "../../../assets/css/Admins/Dashboard.css";
-import Sidebar from "../../sidebar/Sidebar";
+import "./Dashboard.css";
 
-export default function Dashboard() {
+function Dashboard() {
   return (
     <div className="dashboard-root">
-      {/* Sidebar */}
-      <Sidebar />
+      <Sidebar active={0} userType="admin" userName="Admin Aspen" />
 
-      {/* Main Container */}
       <div className="container">
         <div className="container-bg" />
         <header className="header">
@@ -78,3 +75,5 @@ export default function Dashboard() {
     </div>
   );
 }
+
+export default Dashboard;

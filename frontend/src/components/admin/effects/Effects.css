@@ -1,0 +1,162 @@
+/* Contenedor principal de la sección de efectos */
+.effects-section {
+  padding: 24px;
+  background: linear-gradient(
+    to bottom right,
+    rgba(75, 30, 133, 1),
+    rgba(75, 30, 133, 0.01)
+  );
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(75, 30, 133, 0.5);
+  border-radius: 1.5em;
+  box-shadow: 0 0 12px rgba(75, 30, 133, 0.3),
+              inset 0 0 12px rgba(75, 30, 133, 0.1);
+  z-index: 2;
+  overflow-x: auto;
+  transition: transform 0.3s;
+}
+.effects-section:hover {
+  transform: translateY(-2px);
+}
+
+/* Botón de agregar FX */
+.programs-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #b536ff, #401d8d);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.programs-add-btn:hover {
+  box-shadow: 0 0 12px rgba(181, 54, 255, 0.6);
+  transform: scale(1.05);
+}
+
+/* Header con título y filtros */
+.effects-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.effects-section-title {
+  display: flex;
+  align-items: center;
+  font-family: "Roboto";
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* Filtros de búsqueda y tipo */
+.effects-filters {
+  display: flex;
+  gap: 10px;
+}
+
+.effects-search,
+.effects-select {
+  padding: 8px 18px;
+  font-size: 16px;
+  font-family: "Roboto";
+  color: #fff;
+  background: rgba(56, 2, 145, 0.8);
+  border: 1.5px solid #3b16e1;
+  border-radius: 6px;
+  outline: none;
+}
+
+/* Tabla de efectos */
+.effects-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  margin-top: 10px;
+}
+
+.effects-table thead tr {
+  background: rgba(86, 1, 223, 0.25);
+  text-shadow: 0 0 4px rgba(181, 54, 255, 0.3);
+}
+
+.effects-table th {
+  padding: 16px 20px;
+  font-weight: 800;
+  font-size: 17px;
+  color: #e6b3ff;
+  text-align: left;
+  letter-spacing: 0.5px;
+}
+
+.effects-table td {
+  padding: 12px 18px;
+  font-weight: 500;
+  color: #fff;
+  background: rgba(43, 0, 110, 0.15);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.effects-table tbody tr:nth-child(even) td {
+  background: rgba(43, 0, 110, 0.25);
+}
+
+.effects-table tbody tr:hover td {
+  background: rgba(86, 1, 223, 0.3);
+  box-shadow: 0 2px 12px rgba(181, 54, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Animación al cargar filas */
+.effects-table tbody tr {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInRows 0.5s forwards;
+}
+
+@keyframes fadeInRows {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Etiquetas de tipo */
+.effects-type {
+  padding: 4px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.effects-type-operador { background: #1a8cff; }
+.effects-type-jefedeoperadores { background: #1686e1; }
+.effects-type-productor { background: #b536ff; }
+
+/* Botón de edición */
+.effects-edit-btn {
+  font-weight: 600;
+  font-size: 14px;
+  color: #b536ff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.effects-edit-btn:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-shadow: 0 0 4px rgba(181, 54, 255, 0.5);
+}

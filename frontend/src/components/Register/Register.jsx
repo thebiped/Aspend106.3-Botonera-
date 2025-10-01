@@ -48,10 +48,17 @@ function Register() {
               </div>
 
               <div className="form-options-register">
-                <input type="checkbox" />
-                <label className="remember-register">
-                   Acepto los términos y condiciones
-                </label>
+                <div className="checkbox-wrapper">
+                  <input type="checkbox" id="terms-register" className="inp-cbx" />
+                  <label htmlFor="terms-register" className="cbx">
+                    <span>
+                      <svg viewBox="0 0 12 10" height="10px" width="12px">
+                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                      </svg>
+                    </span>
+                    <span>Acepto los términos y condiciones</span>
+                  </label>
+                </div>
               </div>
 
               <div className="action-register">
@@ -61,12 +68,10 @@ function Register() {
 
             <div className="form-detail-register">
               ¿No tienes una cuenta?{" "}
-                <Link to="/register" className="login-link">Iniciar sesión</Link>
+                <Link to="/" className="login-link">Iniciar sesión</Link>
             </div>
           </div>
         </div>
-
-        
       </div>
     </main>
   );

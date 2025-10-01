@@ -1,0 +1,207 @@
+.operador-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+}
+
+.operador-modal {
+  min-width: 800px;
+  max-width: 98vw;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 40px 36px 28px 36px;
+  color: #fff;
+  backdrop-filter: blur(18px);
+  background: rgba(41, 0, 106, 0.4);
+  border-radius: 18px;
+  border: 3px solid rgba(255, 123, 211, 0.4);
+  box-shadow: 0 0 12px 0 rgba(21, 0, 255, 0.3),
+    inset 0 0 24px 0 rgba(149, 0, 255, 0.4);
+}
+
+.operador-modal-fx-content {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-bottom: 32px;
+  align-items: flex-start;
+}
+
+.operador-modal-fx-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.operador-fx-input-group {
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.8s ease forwards;
+  animation-delay: 0.9s;
+  opacity: 0;
+}
+
+.operador-fx-input-group label {
+  margin-bottom: calc(0.3rem + 5px);
+  font-size: calc(0.9rem + 2px);
+  animation: fadeInUp 1s ease;
+}
+
+.operador-fx-input-wrapper {
+  position: relative;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 2px 14px;
+  color: #fff;
+  background: rgba(12, 18, 78, 0.92);
+  border-radius: 10px;
+  border: 1px solid #27489e;
+  outline: none;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.operador-fx-input-wrapper::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #641fd2, #27489e);
+  transition: width 0.4s ease;
+}
+
+.operador-fx-input-wrapper:focus-within::before {
+  width: 100%;
+}
+
+.operador-fx-input-wrapper:hover {
+  background: rgba(12, 18, 78, 1);
+  box-shadow: 0 0 12px rgba(174, 31, 210, 0.4);
+  transform: translateY(-2px);
+}
+
+.operador-fx-input-wrapper input,
+.operador-fx-input-wrapper select {
+  width: 100%;
+  font-size: 1.08rem;
+  color: #fff;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 4px 0;
+  box-sizing: border-box;
+}
+
+.operador-fx-input-wrapper svg {
+  display: block;
+  align-self: center;
+}
+
+.operador-fx-input-wrapper select option {
+  color: #fff;
+  background: #181c2f;
+}
+
+.operador-modal-fx-sound {
+  min-width: 220px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.operador-modal-fx-sound-label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.operador-modal-fx-sound-box {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  background: #23284a;
+  border-radius: 18px;
+  border: 2.5px dashed #27489e;
+  transition: border 0.2s;
+}
+
+.operador-modal-fx-sound-box.uploaded {
+  border: 2.5px solid #00ffe7;
+}
+
+.operador-modal-fx-sound-check {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #23284a;
+  border-radius: 50%;
+}
+
+.operador-modal-fx-sound-text {
+  font-size: 1.08rem;
+  color: #b8b8b8;
+  margin-top: 8px;
+}
+
+.operador-modal-fx-sound-filename {
+  font-size: 1rem;
+  color: #00ffe7;
+  text-align: center;
+  word-break: break-all;
+  margin-top: 2px;
+}
+
+.operador-modal h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #00ffe7;
+}
+
+.operador-modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.operador-modal-actions button {
+  padding: 7px 18px;
+  border-radius: 6px;
+  border: none;
+  background: #27489e;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.operador-modal-actions button[type="submit"] {
+  background: #00ffe7;
+  color: #181c2f;
+}
+
+.operador-modal-actions button:hover {
+  background: #00b6a6;
+  color: #fff;
+}

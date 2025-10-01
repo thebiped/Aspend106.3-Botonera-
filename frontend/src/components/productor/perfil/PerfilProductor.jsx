@@ -1,10 +1,12 @@
 import Sidebar from "../../sidebar/Sidebar";
-import { Shield, Edit2, Trash2, User, Lock, AlertTriangle } from "lucide-react";
-import "./Perfil.css";
-function Perfil() {
+import "./PerfilProductor.css";
+import { AlertTriangle, Edit2, Shield, Trash2, User, Lock } from "lucide-react";
+
+function PerfilProductor() {
+  const rol = "productor";
   return (
     <div className="dashboard-root">
-      <Sidebar active="perfil" />
+      <Sidebar active={2} userType={rol} userName="Productor" />
       <div className="container">
         <div className="container-bg" />
         <div className="programs-header">
@@ -40,13 +42,13 @@ function Perfil() {
                   <div className="perfil-avatar">PP</div>
                   <div className="perfil-user-info">
                     <h2 className="perfil-user-name">
-                      Pepe Pascal
+                      Miguel Ángel{" "}
                       <span className="perfil-role perfil-role-operador">
-                        Operador
+                        Productor
                       </span>
                     </h2>
                     <h3 className="perfil-user-data">
-                      Email: usuario@gmail.com
+                      Email: miguelangel@gmail.com
                     </h3>
                     <h3 className="perfil-user-data">
                       Teléfono: +54 11 9876-5432
@@ -74,6 +76,7 @@ function Perfil() {
                       />
                     </div>
                   </div>
+
                   <div className="input-group">
                     <label>Nueva Contraseña</label>
                     <div className="input-group-wrapper">
@@ -84,6 +87,7 @@ function Perfil() {
                       />
                     </div>
                   </div>
+
                   <div className="input-group">
                     <label>Confirmar Nueva Contraseña</label>
                     <div className="input-group-wrapper">
@@ -94,6 +98,7 @@ function Perfil() {
                       />
                     </div>
                   </div>
+
                   <div className="action">
                     <button className="perfil-password-btn" type="submit">
                       Actualizar Contraseña
@@ -102,23 +107,11 @@ function Perfil() {
                 </form>
               </section>
             </div>
-            <section className="perfil-card perfil-danger">
-              <div className="perfil-danger-header">
-                <div className="perfil-danger-header-title">
-                  <AlertTriangle size={26} />
-                  <h2 className="perfil-card-title">Zona de Peligro</h2>
-                </div>
-                <p className="perfil-card-desc">Acciones irreversibles</p>
-              </div>
-              <button className="perfil-danger-btn">Desactivar Cuenta</button>
-              <button className="perfil-danger-btn perfil-danger-delete">
-                <Trash2 size={16} /> Eliminar Cuenta
-              </button>
-            </section>
           </div>
         </main>
       </div>
     </div>
   );
 }
-export default Perfil;
+
+export default PerfilProductor;

@@ -70,12 +70,18 @@ function Login() {
               </div>
 
               <div className="form-options-login">
-                <label className="remember-login">
-                  <input type="checkbox" /> Recordarme
-                </label>
-                <a href="#" className="forgot-link-login">
-                  ¿Olvidaste tu contraseña?
-                </a>
+                <div className="checkbox-wrapper">
+                  <input type="checkbox" id="remember-login" className="inp-cbx" />
+                  <label htmlFor="remember-login" className="cbx">
+                    <span>
+                      <svg viewBox="0 0 12 10" height="10px" width="12px">
+                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                      </svg>
+                    </span>
+                    <span>Recordarme</span>
+                  </label>
+                </div>
+                <a href="#" className="forgot-link-login">¿Olvidaste tu contraseña?</a>
               </div>
 
               {error && <div style={{ color: 'red', marginBottom: '10px' }}>{error}</div>}

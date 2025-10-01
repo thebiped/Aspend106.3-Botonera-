@@ -1,0 +1,246 @@
+/* === HEADER === */
+.programs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+.programs-header-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.programs-title {
+  margin: 0;
+  font-family: "Koh Santepheap", Arial, sans-serif;
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.programs-desc {
+  font-family: "Roboto";
+  font-size: 1rem;
+  color: #b8b8b8;
+}
+
+.programs-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: #1686e1;
+  border: 1px solid #5282ff;
+  border-radius: 6px;
+  box-shadow: 0 0 8px 0 rgba(0, 187, 255, 0.25), inset 0 0 12px 0 #481fff;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.programs-add-btn:hover {
+  background: #1a8cff;
+}
+
+
+.programs-tabs {
+  display: flex;
+  gap: 16px;
+  padding: 0.5rem 0.8rem;
+  background: rgba(56, 2, 145, 0.6);
+  backdrop-filter: blur(10px);
+  border: 3px solid #b536ff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(75, 30, 133, 0.3), inset 0 0 10px rgba(75, 30, 133, 0.1);
+  z-index: 2;
+}
+
+/* === TAB INDIVIDUAL === */
+.programs-tab {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #b8b8b8;
+  background: rgba(43, 0, 110, 0.3);
+  border: 1.5px solid rgba(33, 0, 77, 0.6);
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(51, 25, 98, 0.25), inset 0 0 12px rgba(32, 10, 68, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* === TAB HOVER Y ACTIVO === */
+.programs-tab-active,
+.programs-tab:hover {
+  color: #fff;
+  background: linear-gradient(135deg, #b536ff, #401d8d);
+  border: 1.5px solid #3b16e1;
+  box-shadow: 0 4px 12px rgba(181, 54, 255, 0.5), inset 0 0 8px rgba(255, 123, 211, 0.2);
+  transform: translateY(-2px);
+}
+
+/* === EFECTO NEON EN EL TEXTO ACTIVO === */
+.programs-tab-active {
+  text-shadow: 0 0 8px rgba(181, 54, 255, 0.7), 0 0 16px rgba(181, 54, 255, 0.5);
+}
+
+/* === TRANSICIÓN SUAVE ENTRE TABS === */
+.programs-tab span {
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* === EFFECTS LIBRARY === */
+.efectos-library {
+  padding: 24px;
+  background: linear-gradient(
+    to bottom right,
+    rgba(75, 30, 133, 1),
+    rgba(75, 30, 133, 0.01)
+  ); 
+  backdrop-filter: blur(12px); 
+  border: 2px solid rgba(75, 30, 133, 0.5); 
+  border-radius: 1.5em; 
+  box-shadow: 0 0 12px rgba(75, 30, 133, 0.3),inset 0 0 12px rgba(75, 30, 133, 0.1);
+  z-index: 2;
+}
+
+.effects-library-title {
+  margin-bottom: 8px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.effects-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 15px;
+  padding: 12px;
+}
+
+.effect-card {
+  position: relative;
+  min-width: 300px;
+  max-width: 300px;
+  max-height: 155px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 1.2rem 1rem;
+  color: #fff;
+  background: rgba(56, 2, 145, 0.8);
+  border: 1.5px solid #3b16e1;
+  border-radius: 12px;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 0 0.8rem 0 rgba(51, 25, 98, 0.25), inset 0 0 1rem 0 #200a44;
+}
+
+.effect-card-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.effect-card-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  color: #1a8cff;
+  background: rgba(98, 0, 255, 0.25);
+  border: 1px solid #27489e;
+  border-radius: 8px;
+}
+
+.content-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.effect-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.effect-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: #b8b8b8;
+}
+
+.effect-card-meta .duration,
+.effect-card-meta .type {
+  font-size: 0.8rem;
+}
+
+.effect-card-label {
+  display: inline-block;
+  margin-left: 0.2rem;
+  padding: 0.2rem 0.8rem;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #fff;
+  background: #192e62;
+  border-radius: 6px;
+}
+
+.effect-card-label.intro {
+  background: #1a8cff;
+}
+.effect-card-label.separator {
+  background: #e64a4a;
+}
+.effect-card-label.outro {
+  background: #00c896;
+}
+.effect-card-label.id {
+  background: #1686e1;
+}
+
+.content-info .creator {
+  font-size: 12px;
+}
+
+.effect-card-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.effect-card-play {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 24px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  background: #27489e;
+  border: 2px solid #006ac0;
+  border-radius: 6px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.effect-card-play:hover {
+  background: #1a8cff;
+}
