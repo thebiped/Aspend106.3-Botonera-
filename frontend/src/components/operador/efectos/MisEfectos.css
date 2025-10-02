@@ -15,7 +15,6 @@
 }
 
 /* Sección FX */
-/* Biblioteca FX */
 .me-library {
   padding: 24px;
   background: rgba(41, 0, 106, 0.4);
@@ -24,6 +23,14 @@
   border-radius: 18px;
   box-shadow: 0 0 12px rgba(21, 0, 255, 0.3), inset 0 0 24px rgba(149, 0, 255, 0.4);
   color: #fff;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.me-library.show {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* Header de la biblioteca */
@@ -34,46 +41,82 @@
   margin-bottom: 16px;
 }
 .me-add-btn {
-  background: #1677e1;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
+  position: relative;
   padding: 8px 18px;
-  cursor: pointer;
   font-weight: 500;
-  transition: background 0.2s;
+  color: #fff;
+  background: #043b75;
+  border: 2px solid #0098b3;
+  border-radius: 8px;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
 }
-.me-add-btn:hover { background: #1a8fff; }
+.me-add-btn::after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.me-add-btn:hover::after{
+  transform: scale(4);
+}
+
+.me-add-btn:hover{
+  background: #00274b;
+  border-color: #00473b;
+}
 
 /* Lista FX */
 .me-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.6s ease forwards;
 }
 
 /* Item FX */
 .me-item {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 10px 16px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.05);
-  position: relative;
+  transform: translateY(12px);
   transition: background 0.2s;
+  opacity: 0;
 }
+
+.me-item.show {
+  animation: fadeInUp 0.5s forwards;
+}
+
 .me-item:hover { background: rgba(255, 255, 255, 0.1); }
 
 /* Botón play */
 .me-play-btn {
-  border: none;
-  background: rgba(255,255,255,0.15);
-  border-radius: 50%;
   padding: 10px;
   color: #fff;
-  cursor: pointer;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 50%;
   transition: transform 0.2s ease, background 0.2s;
+  cursor: pointer;
 }
 .me-play-btn.playing { background: #1677e1; }
 .me-play-btn:hover { transform: scale(1.1); background: rgba(255,255,255,0.3); }

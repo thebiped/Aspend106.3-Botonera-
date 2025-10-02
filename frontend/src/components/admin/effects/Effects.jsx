@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AddEffectModal from "./modal/Add/AddEffectModal";
 import EditEffectModal from "./modal/Edit/EditEffectModal";
 import Sidebar from "../../sidebar/Sidebar";
-import { Plus, Radio } from "lucide-react";
+import { Plus, Radio, Search } from "lucide-react";
 import "./Effects.css";
 
 const programsData = [
@@ -80,10 +80,12 @@ function Effects() {
             </p>
           </div>
           <button
-            className="programs-add-btn"
+            className="sparkle-button"
             onClick={() => setModalOpen(true)}
           >
             <Plus size={18} /> Agregar FX
+            <span className="spark"></span>
+            <span className="backdrop"></span>
           </button>
         </div>
         <main className="main-container">
@@ -94,23 +96,18 @@ function Effects() {
                 Programas
               </span>
               <div className="effects-filters">
-                <input
-                  className="effects-search"
-                  type="text"
-                  placeholder="Buscar programa, operador o productor..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-                <select
-                  className="effects-select"
-                  value={type}
-                  onChange={(e) => setType(e.target.value)}
-                >
-                  <option value="">Todos los tipos</option>
-                  <option value="Operador">Operador</option>
-                  <option value="Jefe de Operadores">Jefe de Operadores</option>
-                  <option value="Productor">Productor</option>
-                </select>
+                <div className="fxe-input-search-wrapper">
+                  <Search size={18}/>
+                  <input  type="text" placeholder="Buscar programa, operador o productor..." value={search} onChange={(e) => setSearch(e.target.value)}/>
+                </div>
+                <div className="fxe-input-select-wrapper">
+                  <select  value={type} onChange={(e) => setType(e.target.value)}>
+                    <option value="">Todos los tipos</option>
+                    <option value="Operador">Operador</option>
+                    <option value="Jefe de Operadores">Jefe de Operadores</option>
+                    <option value="Productor">Productor</option>
+                  </select>
+                </div>
               </div>
             </div>
             <table className="effects-table">

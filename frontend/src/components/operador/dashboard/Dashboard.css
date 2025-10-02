@@ -1,212 +1,196 @@
-/* Contenedor principal del dashboard */
-.operador-dashboard-root {
-  min-height: 100vh;
-  display: flex;
-  background: linear-gradient(135deg, #0c0a25 60%, #181c3a 100%);
-}
+/* ==============================
+   OPERADOR DASHBOARD
+   ============================== */
 
-/* Sidebar lateral */
-.operador-sidebar {
-  width: 250px;
+/* encabezado principal */
+.operador-dashboard-header {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background: #06112e;
-  border-right: 1px solid #1686e1;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  gap: 10px;
+  z-index: 2;
 }
 
-/* Logo del sidebar */
-.operador-sidebar-logo {
+.operador-dashboard-title {
+  margin: 0;
+  font-family: "Koh Santepheap", Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+  animation: fadeIn 0.8s forwards;
+}
+
+.operador-dashboard-desc {
+  margin: 0;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 14px;
+  color: #b8b8b8;
+  animation: fadeIn 0.8s forwards;
+}
+
+/* sección de estadísticas */
+.operador-section-stats {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  z-index: 2;
+}
+
+.operador-stat-card {
+  position: relative;
+  min-width: 0;
+  width: 24em;
+  height: 12em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75em;
+  padding: 1em;
+  font-family: "Roboto";
+  color: #fff;
+  backdrop-filter: blur(12px);
+  background: linear-gradient(to bottom right, rgba(75, 30, 133, 1), rgba(75, 30, 133, 0.01));
+  border-radius: 1.5em;
+  border: 2px solid rgba(75, 30, 133, 0.5);
+  animation: fadeInUp 0.6s forwards;
+  transition: transform 0.2s ease;
+  opacity: 0;
+}
+
+.operador-stat-card:nth-child(1) { animation-delay: 0.1s; }
+.operador-stat-card:nth-child(2) { animation-delay: 0.3s; }
+.operador-stat-card:nth-child(3) { animation-delay: 0.5s; }
+
+/* elementos de la tarjeta */
+.operador-stat-icon,
+.operador-stat-label,
+.operador-stat-value {
+  position: relative;
+  z-index: 2;
+}
+
+.operador-stat-icon {
+  width: 60px;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #9859ff;
-  border-bottom: 1px solid #27489e;
-}
-
-.operador-logo-icon {
-  font-size: 1.5rem;
-}
-
-.operador-logo-text {
-  padding: 4px 12px;
-  font-family: "Koh Santepheap", sans-serif;
-  font-size: 1.2rem;
+  margin-bottom: 6px;
   color: #fff;
-  background: #b536ff;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px #b536ff44;
 }
 
-/* Menú de navegación */
-.operador-nav-menu {
+/* variantes de iconos */
+.operador-stat-icon-blue {
+  background: linear-gradient(135deg, #000270 0%, #0f087c 49%, #1e0baa 100%);
+  border: 1px solid #27489e;
+}
+
+.operador-stat-icon-purple {
+  background: linear-gradient(135deg, #490070 0%, #53087c 49%, #7a0baa 100%);
+  border: 1px solid #9e2794;
+}
+
+.operador-stat-icon-pink {
+  background: linear-gradient(135deg, #700041 0%, #7c0846 49%, #aa0b68 100%);
+  border: 1px solid #9e2727;
+}
+
+.operador-stat-label {
+  margin-bottom: 2px;
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #b8b8b8;
+  text-align: center;
+}
+
+.operador-stat-value {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+/* sección de actividad */
+.operador-section-activity {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
   padding: 24px;
+  backdrop-filter: blur(12px);
+  background: linear-gradient(to bottom right,rgba(75, 30, 133, 0.6),rgba(75, 30, 133, 0.01));
+  border-radius: 1.5em;
+  border: 3px solid rgba(75, 30, 133, 0.5);
+  animation: fadeInRight 1s forwards;
+  transition: transform 0.2s ease;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 2;
 }
 
-.operador-nav-item {
+/* título y lista de actividad */
+.operador-activity-title,
+.operador-activity-list {
+  position: relative;
+  z-index: 2;
+}
+
+.operador-activity-title {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1rem;
-  padding: 10px 18px;
-  color: #fff;
-  background: none;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-
-.operador-nav-item.active,
-.operador-nav-item:hover {
-  color: #b536ff;
-  background: #011a5d;
-  border: 1px solid #1686e1;
-}
-
-/* Información del usuario */
-.operador-sidebar-user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 20px 15px;
-  background: #06112e;
-  border-top: 1px solid #36528f;
-}
-
-.operador-user-avatar {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #fff;
-  background: #9859ff;
-  border-radius: 50%;
-}
-
-.operador-user-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.operador-user-name {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.operador-user-role {
-  font-size: 0.9rem;
-  color: #b8b8b8;
-}
-
-/* Contenedor principal de contenido */
-.operador-dashboard-container {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 40px;
-  padding: 40px 24px;
-  background: #0c0a25;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-/* Header del dashboard */
-.operador-dashboard-header {
+  gap: 8px;
   margin-bottom: 10px;
-}
-
-.operador-dashboard-title {
-  margin-bottom: 8px;
-  font-size: 2.2rem;
-  font-weight: 700;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
   color: #fff;
+  animation: fadeIn 0.8s forwards;
 }
 
-.operador-dashboard-desc {
-  font-size: 1.1rem;
-  color: #b8b8b8;
+.operador-activity-icon {
+  color: #b536ff;
 }
 
-/* Cards de resumen */
-.operador-dashboard-cards {
-  display: flex;
-  gap: 40px;
-  justify-content: flex-start;
-  margin-bottom: 20px;
-}
-
-.operador-dashboard-card {
-  min-width: 220px;
+.operador-activity-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 24px 30px;
-  font-family: "Inter", sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #fff;
-  background: linear-gradient(135deg, #192e62 80%, #9859ff 100%);
-  border-radius: 18px;
-  border: 2px solid #b536ff;
-  box-shadow: 0 4px 12px rgba(21, 0, 255, 0.3);
-}
-
-.card-programas { border-color: #9859ff; }
-.card-fx { border-color: #e64a4a; }
-.card-institucionales { border-color: #b536ff; }
-
-.operador-card-icon { font-size: 2.2rem; margin-bottom: 8px; }
-.operador-card-label { font-size: 1.1rem; color: #b8b8b8; margin-bottom: 6px; }
-.operador-card-value { font-size: 2rem; font-weight: 700; color: #fff; }
-
-/* Actividad reciente */
-.operador-dashboard-actividad {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 24px 30px;
-  color: #fff;
-  background: linear-gradient(135deg, #192e62 80%, #9859ff 100%);
-  border-radius: 18px;
-  box-shadow: 0 4px 12px rgba(21, 0, 255, 0.3);
-}
-
-.operador-actividad-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-  font-family: "Inter", sans-serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #fff;
-}
-
-.operador-actividad-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  padding: 10px;
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
-.operador-actividad-list li {
-  padding: 10px 18px;
-  font-family: "Roboto", sans-serif;
-  font-size: 1rem;
+/* ítems de actividad */
+.operador-activity-pill {
+  font-size: 14px;
+  font-family: "Roboto";
+  font-weight: 400;
   color: #b8b8b8;
-  background: #011a5d;
+  padding: 10px;
+  background: linear-gradient(to bottom right,rgba(75, 30, 133, 1),rgba(75, 30, 133, 0.01));
   border-radius: 8px;
+  border: 2px solid rgba(75, 30, 133, 0.5);
+  animation: fadeInUp 0.6s forwards;
+  transition: background 0.2s, color 0.2s;
+  opacity: 0;
+}
+
+.operador-activity-pill:nth-child(1) { animation-delay: 0.1s; }
+.operador-activity-pill:nth-child(2) { animation-delay: 0.2s; }
+.operador-activity-pill:nth-child(3) { animation-delay: 0.3s; }
+.operador-activity-pill:nth-child(4) { animation-delay: 0.4s; }
+.operador-activity-pill:nth-child(5) { animation-delay: 0.5s; }
+
+
+.operador-activity-pill:hover {
+  color: #fff;
+  background: linear-gradient(to bottom right,rgb(86, 35, 153),rgba(86, 34, 153, 0.01));
+  border-radius: 8px;
+  border: 2px solid rgba(75, 30, 133, 0.5);
 }

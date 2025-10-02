@@ -1,7 +1,9 @@
+/* ==============================
+   ADMIN DASHBOARD
+   ============================== */
 
 /* encabezado principal */
-
-.header {
+.admin-header {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -9,7 +11,7 @@
   z-index: 2;
 }
 
-.title {
+.admin-title {
   margin: 0;
   font-family: "Koh Santepheap", Arial, sans-serif;
   font-size: 32px;
@@ -18,7 +20,8 @@
   letter-spacing: 0.5px;
   animation: fadeIn 0.8s forwards;
 }
-.description {
+
+.admin-description {
   margin: 0;
   font-family: "Roboto", Arial, sans-serif;
   font-size: 14px;
@@ -27,40 +30,48 @@
 }
 
 /* sección de estadísticas */
-
-.section-stats {
+.admin-section-stats {
   position: relative;
   display: flex;
   flex-direction: row;
   gap: 20px;
   z-index: 2;
 }
-.stat-card {
+
+.admin-stat-card {
   position: relative;
   min-width: 0;
+  width: 24em;
+  height: 12em;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  flex: 1 1 0;
-  gap: 18px;
-  padding: 24px;
-  background: rgba(41, 0, 106, 0.4);
-  backdrop-filter: blur(18px);
-  border-radius: 18px;
-  border: 3px solid rgba(255, 123, 211, 0.4);
-  box-shadow: 0 0 12px 0 rgba(21, 0, 255, 0.3),
-    inset 0 0 24px 0 rgba(149, 0, 255, 0.4);
+  gap: 0.75em;
+  padding: 1em;
+  font-family: "Roboto";
+  color: #fff;
+  backdrop-filter: blur(12px);
+  background: linear-gradient(to bottom right, rgba(75, 30, 133, 1), rgba(75, 30, 133, 0.01));
+  border-radius: 1.5em;
+  border: 2px solid rgba(75, 30, 133, 0.5);
+  animation: fadeInUp 0.6s forwards;
+  transition: transform 0.2s ease;
+  opacity: 0;
 }
 
-/* elementos de la tarjeta */
+.admin-stat-card:nth-child(1) { animation-delay: 0.1s; }
+.admin-stat-card:nth-child(2) { animation-delay: 0.3s; }
+.admin-stat-card:nth-child(3) { animation-delay: 0.5s; }
 
-.stat-icon,
-.stat-label,
-.stat-value {
+.admin-stat-icon,
+.admin-stat-label,
+.admin-stat-value {
   position: relative;
   z-index: 2;
 }
-.stat-icon {
+
+.admin-stat-icon {
   width: 60px;
   height: 60px;
   display: flex;
@@ -73,20 +84,22 @@
 }
 
 /* variantes de iconos */
-
-.stat-icon-blue {
+.admin-stat-icon-blue {
   background: linear-gradient(135deg, #000270 0%, #0f087c 49%, #1e0baa 100%);
   border: 1px solid #27489e;
 }
-.stat-icon-purple {
+
+.admin-stat-icon-purple {
   background: linear-gradient(135deg, #490070 0%, #53087c 49%, #7a0baa 100%);
   border: 1px solid #9e2794;
 }
-.stat-icon-pink {
+
+.admin-stat-icon-pink {
   background: linear-gradient(135deg, #700041 0%, #7c0846 49%, #aa0b68 100%);
   border: 1px solid #9e2727;
 }
-.stat-label {
+
+.admin-stat-label {
   margin-bottom: 2px;
   font-family: "Roboto", Arial, sans-serif;
   font-weight: 400;
@@ -94,7 +107,8 @@
   color: #b8b8b8;
   text-align: center;
 }
-.stat-value {
+
+.admin-stat-value {
   font-family: "Roboto";
   font-size: 32px;
   font-weight: 700;
@@ -103,31 +117,31 @@
 }
 
 /* sección de actividad */
-
-.section-activity {
+.admin-section-activity {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 18px;
   padding: 24px;
-  background: rgba(41, 0, 106, 0.4);
-  backdrop-filter: blur(18px);
-  border-radius: 18px;
-  border: 3px solid rgba(255, 123, 211, 0.4);
-  box-shadow: 0 0 12px 0 rgba(21, 0, 255, 0.3),
-    inset 0 0 24px 0 rgba(149, 0, 255, 0.4);
+  backdrop-filter: blur(12px);
+  background: linear-gradient(to bottom right,rgba(75, 30, 133, 0.6),rgba(75, 30, 133, 0.01));
+  border-radius: 1.5em;
+  border: 3px solid rgba(75, 30, 133, 0.5);
+  animation: fadeInRight 1s forwards;
+  transition: transform 0.2s ease;
   overflow: hidden;
+  opacity: 0;
   z-index: 2;
 }
 
 /* título y lista de actividad */
-
-.activity-title,
-.activity-list {
+.admin-activity-title,
+.admin-activity-list {
   position: relative;
   z-index: 2;
 }
-.activity-title {
+
+.admin-activity-title {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -138,10 +152,12 @@
   color: #fff;
   animation: fadeIn 0.8s forwards;
 }
-.activity-icon {
+
+.admin-activity-icon {
   color: #b536ff;
 }
-.activity-list {
+
+.admin-activity-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -150,20 +166,29 @@
 }
 
 /* ítems de actividad */
-
-.activity-pill {
+.admin-activity-pill {
   font-size: 14px;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Roboto";
   font-weight: 400;
   color: #b8b8b8;
   padding: 10px;
-  background: #192e62;
-  border: 1.5px solid #27489e;
+  background: linear-gradient(to bottom right,rgba(75, 30, 133, 1),rgba(75, 30, 133, 0.01));
   border-radius: 8px;
-  box-shadow: 0 0 12px 0 #0a1a44, inset 0 0 8px 0 #192e62;
+  border: 2px solid rgba(75, 30, 133, 0.5);
+  animation: fadeInUp 0.6s forwards;
   transition: background 0.2s, color 0.2s;
+  opacity: 0;
 }
-.activity-pill:hover {
-  background: #1740a1;
+
+.admin-activity-pill:nth-child(1) { animation-delay: 0.1s; }
+.admin-activity-pill:nth-child(2) { animation-delay: 0.2s; }
+.admin-activity-pill:nth-child(3) { animation-delay: 0.3s; }
+.admin-activity-pill:nth-child(4) { animation-delay: 0.4s; }
+.admin-activity-pill:nth-child(5) { animation-delay: 0.5s; }
+
+.admin-activity-pill:hover {
   color: #fff;
+  background: linear-gradient(to bottom right,rgb(86, 35, 153),rgba(86, 34, 153, 0.01));
+  border-radius: 8px;
+  border: 2px solid rgba(75, 30, 133, 0.5);
 }

@@ -24,8 +24,12 @@ const programas = [
   },
   {
     nombre: "Noticias Centrales",
-    tipo: "Institucional",
-    fx: [],
+    tipo: "Programa",
+    fx: [
+      { titulo: "Intro Tarde", duracion: "00:12" },
+      { titulo: "Separador Canciones", duracion: "00:03" },
+      { titulo: "Efecto Especial", duracion: "00:06" },
+    ],
   },
 ];
 
@@ -51,12 +55,10 @@ function MisProgramas() {
             {programas.map((prog, idx) => (
               <div key={idx} className="mp-programa-container noselect">
                 <div className="canvas">
-                  {/* Trackers para efecto 3D */}
                   {Array.from({ length: 25 }, (_, i) => (
                     <div key={i} className={`tracker tr-${i + 1}`}></div>
                   ))}
 
-                  {/* Card real */}
                   <button
                     className="mp-programa-card-btn"
                     onClick={() => navigate(`/programa/${idx}`)}

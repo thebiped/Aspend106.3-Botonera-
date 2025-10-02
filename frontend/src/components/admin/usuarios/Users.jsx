@@ -66,34 +66,31 @@ function Users() {
             </p>
           </div>
           <button
-            className="programs-add-btn"
+            className="sparkle-button"
             onClick={() => setModalOpen(true)}
           >
             <Plus size={18} /> Nuevo Usuario
+            <span className="spark"></span>
+            <span className="backdrop"></span>
           </button>
+
         </div>
         <main className="main-container">
           <section className="users-section">
             <div className="users-section-header">
               <span className="users-section-title">Lista de Usuarios</span>
               <div className="users-filters">
-                <input
-                  className="users-search"
-                  type="text"
-                  placeholder="Buscar usuario o programa..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-                <select
-                  className="users-select"
-                  value={role}
-                  onChange={(e) => setRole(e.target.value)}
-                >
-                  <option value="">Todos los roles</option>
-                  <option value="Operador">Operador</option>
-                  <option value="Jefe de Operadores">Jefe de Operadores</option>
-                  <option value="Productor">Productor</option>
-                </select>
+                <div className="fxu-input-search-wrapper">
+                  <input type="text" placeholder="Buscar usuario o programa..." value={search} onChange={(e) => setSearch(e.target.value)}/>
+                </div>
+                <div className="fxu-input-select-wrappper">
+                  <select value={role} onChange={(e) => setRole(e.target.value)}>
+                    <option value="">Todos los roles</option>
+                    <option value="Operador">Operador</option>
+                    <option value="Jefe de Operadores">Jefe de Operadores</option>
+                    <option value="Productor">Productor</option>
+                  </select>
+                </div>
               </div>
             </div>
             <table className="users-table">

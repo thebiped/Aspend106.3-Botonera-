@@ -26,13 +26,13 @@
 /* Card individual */
 .mp-programa-card-btn {
   position: relative;
-  width: 320px;
+  width: 350px;
   height: 220px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   background: linear-gradient(135deg, #18104a 80%, #2e1e5a 100%);
-  border-radius: 16px;
+  border-radius: 12px;
   border: 2px solid #361e8a;
   box-shadow: 0 4px 16px rgba(54, 111, 255, 0.15);
   overflow: hidden;
@@ -90,10 +90,10 @@
   position: absolute;
   bottom: 12px;
   left: 12px;
-  color: #fff;
-  z-index: 2;
   display: flex;
   flex-direction: column;
+  color: #fff;
+  z-index: 2;
 }
 
 /* Título grande */

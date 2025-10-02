@@ -1,5 +1,6 @@
+import React, { useRef, useState, useEffect } from "react";
 import Sidebar from "../../sidebar/Sidebar";
-import { Volume2 } from "lucide-react";
+import { Volume2, Play } from "lucide-react";
 import "./FxInstitucionales.css";
 
 const fxList = [
@@ -36,6 +37,28 @@ const fxList = [
 ];
 
 function FxInstitucionales({ rol = "operador" }) {
+  const audioRef = useRef(null);
+  const [playingIdx, setPlayingIdx] = useState(null);
+  const [visibleItems, setVisibleItems] = useState([]);
+
+  const handlePlay = (idx, audioUrl) => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+    audioRef.current = new Audio(audioUrl || "");
+    audioRef.current.play();
+    setPlayingIdx(idx);
+    audioRef.current.onended = () => setPlayingIdx(null);
+  };
+
+  useEffect(() => {
+    fxList.forEach((_, i) => {
+      setTimeout(() => {
+        setVisibleItems((prev) => [...prev, i]);
+      }, i * 200); 
+    });
+  }, []);
+
   return (
     <div className="dashboard-root">
       <Sidebar
@@ -45,45 +68,47 @@ function FxInstitucionales({ rol = "operador" }) {
       />
       <div className="container">
         <div className="container-bg"></div>
-        <div className="main-container">
-          <header className="header">
-            <h1 className="title">Efectos Institucionales</h1>
-            <p className="description">
+          <header className="fx-header">
+            <h1 className="fx-title">Efectos Institucionales</h1>
+            <p className="fx-description">
               Accede a la biblioteca de efectos oficiales de la emisora,
               disponibles para todos los operadores.
             </p>
           </header>
+        <div className="main-container">
+
+          {/* 🔹 Sección en GRID */}
           <section className="fx-section">
-            <h2 className="fx-section-title">Biblioteca Institucional</h2>
-            <div className="fx-cards-grid">
+            <h2 className="fx-section-title">Biblioteca en Lista</h2>
+            <div className="fx-list">
               {fxList.map((fx, idx) => (
-                <div className="fx-card" key={idx}>
-                  <div className="fx-card-header">
-                    <span className="fx-card-icon">
-                      <Volume2 size={24} />
-                    </span>
-                    <span className="fx-card-title">{fx.title}</span>
+                <div key={idx} className={`fx-list-item ${visibleItems.includes(idx) ? "show" : ""}`} style={{ animationDelay: `${0.2 + idx * 0.15}s` }} 
+                >
+                  <button
+                    className={`fx-list-play ${playingIdx === idx ? "playing" : ""}`}
+                    onClick={() => handlePlay(idx)}
+                  >
+                    <Play size={18} />
+                  </button>
+                  <div className="fx-list-icon">
+                    <Volume2 size={26} color="#fff" />
+                    <span className="fx-list-duration">{fx.duration}</span>
                   </div>
-                  <div className="fx-card-info">
-                    <span className="fx-card-duration">{fx.duration}</span>
-                    <div className="fx-card-tags">
+                  <div className="fx-list-info">
+                    <h3 className="fx-list-title">{fx.title}</h3>
+                    <p className="fx-list-tags">
                       {fx.tags.map((tag, i) => (
-                        <span
-                          className={`fx-tag fx-tag-${tag.toLowerCase()}`}
-                          key={i}
-                        >
+                        <span key={i} className={`fx-list-label ${tag.toLowerCase()}`}>
                           {tag}
                         </span>
                       ))}
-                    </div>
+                    </p>
                   </div>
-                  {rol !== "productor" && (
-                    <button className="fx-card-play">▶ Reproducir</button>
-                  )}
                 </div>
               ))}
             </div>
           </section>
+
         </div>
       </div>
     </div>

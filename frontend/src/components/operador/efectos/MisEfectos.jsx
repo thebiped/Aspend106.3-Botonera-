@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import Sidebar from "../../sidebar/Sidebar";
 import { Volume2, Edit2, X, Play } from "lucide-react";
 import "./MisEfectos.css";
@@ -53,7 +53,9 @@ function MisEfectos() {
   const audioRef = useRef(null);
   const [playingIdx, setPlayingIdx] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
-
+  const [showLibrary, setShowLibrary] = useState(false);
+  const [visibleItems, setVisibleItems] = useState([]);
+  
   const handlePlay = (idx, audioUrl) => {
     if (audioRef.current) {
       audioRef.current.pause();
@@ -64,22 +66,39 @@ function MisEfectos() {
     audioRef.current.onended = () => setPlayingIdx(null);
   };
 
+
+  useEffect(() => {
+    const containerTimer = setTimeout(() => setShowLibrary(true), 200);
+    return () => clearTimeout(containerTimer);
+  }, []);
+
+  useEffect(() => {
+    if (showLibrary) {
+      fxList.forEach((_, i) => {
+        setTimeout(() => {
+          setVisibleItems(prev => [...prev, i]);
+        }, 800 + i * 200); 
+      });
+    }
+  }, [showLibrary, fxList]);
+
   return (
     <div className="dashboard-root">
       <Sidebar active="mis-efectos" userType="operador" userName="Pepe Pascal" />
       <div className="container">
         <div className="container-bg" />
         <main className="main-container">
-          <div className="me-library">
+          <div className={`me-library ${showLibrary ? "show" : ""}`}>
             <div className="me-library-header">
               <h2>🎧 Mis Efectos</h2>
               <button className="me-add-btn" onClick={() => setModalOpen(true)}>
                 + Agregar FX
               </button>
             </div>
+
             <div className="me-list">
               {fxList.map((fx, i) => (
-                <div key={i} className="me-item">
+                <div key={i} className={`me-item ${visibleItems.includes(i) ? "show" : ""}`}>
                   {/* Botón reproducir */}
                   <button
                     className={`me-play-btn ${playingIdx === i ? "playing" : ""}`}

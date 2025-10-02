@@ -1,30 +1,41 @@
-
-/*  Header general */
-.header {
-  margin-bottom: 24px;
+.fx-header{
+  z-index: 2;
 }
-.title {
+
+.fx-title {
   font-family: "Koh Santepheap", sans-serif;
   font-size: 2.2rem;
   color: #fff;
-  margin-bottom: 8px;
+  animation: fadeInUp 0.8s ease;
 }
-.description {
+.fx-description {
   font-size: 1.1rem;
   color: #b8b8b8;
+  animation: fadeIn 0.8s ease;
 }
 
 /*  Sección de FX */
 .fx-section {
-  margin-top: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
   padding: 24px;
-  background: rgba(41, 0, 106, 0.4);
-  backdrop-filter: blur(18px);
-  border-radius: 18px;
-  border: 3px solid rgba(255, 123, 211, 0.4);
-  box-shadow: 0 0 12px 0 rgba(21, 0, 255, 0.3),
-    inset 0 0 24px 0 rgba(149, 0, 255, 0.4);
+  backdrop-filter: blur(12px);
+  background: linear-gradient(
+    to bottom right,
+    rgba(75, 30, 133, 0.6),
+    rgba(75, 30, 133, 0.01)
+  );
+  border-radius: 1.5em;
+  border: 3px solid rgba(75, 30, 133, 0.5);
+  animation: fadeInRight 1s forwards;
+  transition: transform 0.2s ease;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 2;
 }
+
 
 /*  Título de sección FX */
 .fx-section-title {
@@ -35,110 +46,95 @@
   margin-bottom: 18px;
 }
 
-/*  Grid de FX cards */
-.fx-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 10px;
-}
-
-/*  Tarjeta FX */
-.fx-card {
+/*  FX cards */
+.fx-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 1.2rem 1rem;
-  color: #fff;
-  background: rgba(56, 2, 145, 0.8);
-  backdrop-filter: blur(18px);
-  border-radius: 12px;
-  border: 1.5px solid #3b16e1;
-  box-shadow: 0 0 0.8rem 0 rgba(51, 25, 98, 0.25),
-    inset 0 0 1rem 0 #200a44;
+  gap: 12px;
 }
 
-/*  Header de FX card */
-.fx-card-header {
+.fx-list-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 18px;
-  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(20px);
+  transition: background 0.2s;
+  opacity: 0;
 }
-.fx-card-icon {
-  width: 2.5rem;
-  height: 2.5rem;
+.fx-list-item.show{
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.fx-list-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.fx-list-play {
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s;
+}
+.fx-list-play:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.3);
+}
+.fx-list-play.playing {
+  background: #b536ff;
+  color: #fff;
+}
+
+.fx-list-icon {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
-  color: #1a8cff;
-  background: rgba(98, 0, 255, 0.25);
-  border: 1px solid #27489e;
-  border-radius: 8px;
+  background: rgba(75, 30, 133, 0.3);
+  border-radius: 10px;
+  width: 60px;
+  height: 60px;
 }
-.fx-card-title {
-  font-family: "Inter", Arial, sans-serif;
+.fx-list-duration {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  color: #fff;
 }
 
-/*  Info de FX */
-.fx-card-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.fx-list-info {
+  flex-grow: 1;
 }
-.fx-card-duration {
-  font-size: 14px;
-  color: #b8b8b8;
-  margin-right: 8px;
-}
-.fx-card-tags {
-  display: flex;
-  gap: 8px;
-}
-.fx-tag {
-  font-family: "Inter", Arial, sans-serif;
-  font-size: 13px;
+.fx-list-title {
+  margin: 0;
+  font-size: 1rem;
   font-weight: 600;
   color: #fff;
-  padding: 4px 12px;
-  border-radius: 8px;
 }
-.fx-tag-intro { background: #e64a4a; }
-.fx-tag-noticias { background: #31ff79; }
-.fx-tag-separator { background: #54a1ff; }
-.fx-tag-general { background: #b536ff; }
-.fx-tag-otro { background: #b8b8b8; color: #181c3a; }
-.fx-tag-id { background: #1686e1; }
-.fx-tag-institucional { background: #e6ba4a; color: #181c3a; }
-.fx-tag-deportes { background: #ff329d; }
-.fx-tag-transition { background: #54a1ff; }
-
-/* 🔹 Botón reproducir FX */
-.fx-card-play {
+.fx-list-tags {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.7;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 8px 24px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #fff;
-  background: #27489e;
-  border: 2px solid #006ac0;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s;
+  gap: 6px;
+  flex-wrap: wrap;
 }
-.fx-card-play:hover {
-  background: #b536ff;
-  color: #fff;
-}
-.fx-card-play.playing {
-  background: #b536ff;
-  color: #fff;
-  font-weight: 700;
-  box-shadow: 0 0 8px #b536ff;
-}
+.fx-list-label.id { color: #b8b8b8; font-weight: bold; }
+.fx-list-label.intro { color: #1a8cff; font-weight: bold; }
+.fx-list-label.noticias { color: #b8b8b8; font-weight: bold; }
+.fx-list-label.otro { color: #b8b8b8; font-weight: bold; }
+.fx-list-label.transition { color: #aa22ff; font-weight: bold; }
+.fx-list-label.special { color: #e1a316; font-weight: bold; }
+.fx-list-label.separator { color: #e64a4a; font-weight: bold; }
+.fx-list-label.general { color: #b536ff; font-weight: bold; }
+.fx-list-label.deportes { color: #ff329d; font-weight: bold; }
+.fx-list-label.institucional { color: #e6ba4a; font-weight: bold; }
