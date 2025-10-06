@@ -3,35 +3,70 @@ import "./Login.css";
 import sideImg from "../../assets/img/jake.png"; 
 import logo from "../../assets/img/Logo.png";
 import { User, Lock } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Login() {
   const [n_usuario, setUsuario] = useState("");
   const [contraseña, setContraseña] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setError("");
-    setSuccess("");
-    try {
-      const res = await fetch('http://localhost:3001/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ n_usuario, contraseña })
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setSuccess("Login exitoso");
-        // Aquí puedes redirigir o guardar el usuario en contexto
-      } else {
-        setError(data.error || "Error de login");
-      }
-    } catch (err) {
-      setError("No se pudo conectar al servidor");
-    }
-  };
+  const navigate = useNavigate(); // 👈 Asegúrate de tener esto arriba, dentro del componente
 
+const handleLogin = async (e) => {
+  e.preventDefault();
+  setError("");
+  setSuccess("");
+
+  try {
+    const res = await fetch('http://localhost:3001/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ n_usuario, contraseña })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      setSuccess("Login exitoso");
+
+      // Guardar usuario mínimo en localStorage
+      if (data.usuario) {
+        localStorage.setItem(
+          'usuario',
+          JSON.stringify({
+            id: data.usuario.id_usuario,
+            n_usuario: data.usuario.n_usuario,
+            tipo: data.usuario.tipo
+          })
+        );
+      }
+
+      // Redirigir según tipo
+      const tipo = data.usuario?.tipo?.toLowerCase?.();
+      let dest = '/';
+
+      switch (tipo) {
+        case 'admin':
+          dest = '/admin/dashboard';
+          break;
+        case 'operador':
+          dest = '/operador/dashboard';
+          break;
+        case 'productor':
+          dest = '/productor/dashboard';
+          break;
+        default:
+          dest = '/'; // o alguna página por defecto
+      }
+
+      setTimeout(() => navigate(dest), 400); // pequeña pausa para mostrar mensaje
+    } else {
+      setError(data.error || "Error de login");
+    }
+  } catch (err) {
+    setError("No se pudo conectar al servidor");
+  }
+};
   return (
     <div className="main">
       <div className="container-login">

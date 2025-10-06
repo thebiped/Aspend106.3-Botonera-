@@ -21,10 +21,10 @@ const db = new sqlite3.Database(dbPath, (err) => {
 db.run(`
   CREATE TABLE IF NOT EXISTS usuario (
     id_usuario INTEGER PRIMARY KEY AUTOINCREMENT,
-    n_usuario TEXT NOT NULL,
+    n_usuario TEXT NOT NULL UNIQUE,
     contraseña TEXT NOT NULL,
     tipo TEXT,
-    gmail TEXT
+    gmail TEXT UNIQUE
   )
 `);
 

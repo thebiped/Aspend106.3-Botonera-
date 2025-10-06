@@ -46,7 +46,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const authRouter = require('./rou ters/auth');
+const authRouter = require('./routers/auth');
 app.use('/api/auth', authRouter);
 
 app.listen(3000, () => console.log('Servidor backend en puerto 3000'));
