@@ -1,203 +1,131 @@
-/* Header */
-.pp-header { 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: flex-start; 
-  z-index: 2; 
+/* === Header === */
+.pp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 2;
+  margin-bottom: 16px;
+}
+.pp-title {
+  margin: 0;
+  font-family: "Koh Santepheap";
+  font-size: 2.3rem;
+  color: #fff;
+  animation: fadeInUp 0.5s ease forwards;
+}
+.pp-desc {
+  margin: 4px 0 0 0;
+  font-size: 1rem;
+  color: #b8b8b8;
+  animation: fadeIn 0.5s ease forwards;
 }
 
-.pp-header-info { 
-  display: flex; 
-  flex-direction: column; 
-}
 
-.pp-title { 
-  margin: 0; 
-  font-family: "Koh Santepheap"; 
-  font-size: 2.3rem; 
-  font-weight: 700; 
-  color: #fff; 
-}
 
-.pp-desc { 
-  font-family: "Roboto"; 
-  font-size: 1rem; 
-  color: #b8b8b8; 
-}
-
-/* Biblioteca de programas */
+/* === Biblioteca === */
 .pp-library {
   padding: 24px;
-  background: rgba(41, 0, 106, 0.4);
-  backdrop-filter: blur(18px);
-  border: 3px solid rgba(255, 123, 211, 0.4);
-  border-radius: 18px;
-  box-shadow: 0 0 12px rgba(21, 0, 255, 0.3), inset 0 0 24px rgba(149, 0, 255, 0.4);
-  z-index: 2;
+  background: linear-gradient(to bottom right, rgba(75, 30, 133, 0.9), rgba(75, 30, 133, 0.05));
+  border: 2px solid rgba(75, 30, 133, 0.4);
+  border-radius: 1.5em;
+  box-shadow: 0 0 15px rgba(75, 30, 133, 0.3), inset 0 0 12px rgba(75, 30, 133, 0.1);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
-.pp-library-title { 
-  display: flex; 
-  align-items: center; 
-  gap: 16px; 
-  margin-bottom: 8px; 
-  font-family: "Roboto"; 
-  font-size: 20px; 
-  font-weight: 700; 
-  color: #fff; 
-}
-.pp-library-title span { 
-  display: flex; 
-  align-items: center; 
-}
-.pp-library-title span svg { 
-  margin-right: 8px; 
-  vertical-align: middle; 
-}
-/* Select personalizado */
-.pp-select {
-  min-width: 160px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  background: rgba(24, 24, 24, 0.8);
-  color: #fff;
-  border: 1px solid #3b16e1;
-  font-size: 14px;
-  outline: none;
-  cursor: pointer;
-  transition: border 0.2s ease, background 0.2s ease;
-}
-.pp-select:hover {
-  background: rgba(40, 0, 100, 0.9);
-  border: 1px solid #1a8cff;
+.pp-library.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Texto cuando no hay resultados */
-.pp-empty {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 20px;
-  color: #b8b8b8;
-  font-style: italic;
-}
-
-/* Grid de tarjetas */
-.pp-cards { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
-  gap: 15px; 
-}
-
-/* Tarjeta */
-.pp-card {
-  position: relative;
-  max-width: 300px;
-  min-width: 300px;
-  max-height: 155px;
+/* === Lista e ítems === */
+.pp-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 1.2rem 1rem;
-  font-size: 1rem;
-  font-weight: 700;
+}
+
+.pp-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
   color: #fff;
-  background: rgba(56, 2, 145, 0.8);
-  backdrop-filter: blur(18px);
-  border: 1.5px solid #3b16e1;
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 12px;
-  box-shadow: 0 0 0.8rem rgba(51, 25, 98, 0.25), inset 0 0 1rem #200a44;
+  transform: translateY(15px);
+  transition: background 0.3s;
+  opacity: 0;
 }
-.pp-card-content { 
-  display: flex; 
-  align-items: center; 
-  gap: 10px; 
+.pp-item.show {
+  animation: fadeInUp 0.6s forwards;
 }
-.pp-card-icon { 
-  width: 2.5rem; 
-  height: 2.5rem; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  padding: 0.5rem; 
-  color: #1a8cff;
-  background: rgba(98, 0, 255, 0.25); 
-  border: 1px solid #27489e; 
-  border-radius: 8px;
- }
-
-.pp-card-info { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 10px; 
-  flex: 1; 
+.pp-item:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
-.pp-card-title { 
-  font-size: 1rem; 
-  font-weight: 700; 
-  color: #fff; 
+/* === Icono con duración === */
+.pp-icon {
+  position: relative;
+  background: rgba(75, 30, 133, 0.3);
+  border-radius: 10px;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-.pp-card-meta { 
-  display: flex; 
-  align-items: center; 
-  gap: 10px; 
-  font-size: 0.9rem; 
-  color: #b8b8b8; 
-}
-
-.pp-card-label { 
-  display: inline-block; 
-  margin-left: 0.2rem; 
-  padding: 0.2rem 0.8rem; 
-  font-family: "Inter", Arial, sans-serif; 
-  font-size: 0.8rem; 
-  font-weight: 600; 
-  color: #fff; 
-  background: #192e62; 
+.pp-duration {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2px 6px;
   border-radius: 6px;
+  font-size: 0.7rem;
+  color: #fff;
 }
 
-.pp-card-label.intro { 
-  background: #1a8cff; 
+/* === Info === */
+.pp-info {
+  flex-grow: 1;
 }
-.pp-card-label.separator { 
-  background: #e64a4a; 
+.pp-item-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
 }
-.pp-card-label.outro { 
-  background: #00c896; 
-}
-.pp-card-label.id { 
-  background: #1686e1; 
-}
-.pp-card-label.transition { 
-  background: #aa22ff; 
-}
-.pp-card-label.special { 
-  background: #e1a316; 
+.pp-item-meta {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.8;
 }
 
-/* Acciones */
-.pp-card-actions { 
-  display: flex; 
-  justify-content: flex-start; 
-  margin-top: 10px; 
+/* === Etiquetas === */
+.pp-label {
+  font-weight: bold;
 }
-.pp-card-play { 
-  width: 100%; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  gap: 8px; 
-  padding: 8px 24px; 
-  font-size: 15px; 
-  font-weight: 500; 
-  color: #fff; 
-  background: #27489e; 
-  border: 2px solid #006ac0; 
-  border-radius: 6px; 
-  transition: background 0.2s; 
-  cursor: pointer; 
+.pp-label.intro { color: #1a8cff; }
+.pp-label.transition { color: #aa22ff; }
+.pp-label.special { color: #e1a316; }
+.pp-label.separator { color: #e64a4a; }
+
+/* === Botón play === */
+.pp-play-btn {
+  border: none;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
 }
-.pp-card-play:hover { 
-  background: #1a8cff; 
+.pp-play-btn:hover {
+  transform: scale(1.1);
+  background: rgba(255,255,255,0.25);
 }
+.pp-play-btn.playing {
+  background: #1677e1;
+}
+

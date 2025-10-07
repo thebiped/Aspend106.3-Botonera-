@@ -1,5 +1,4 @@
-// Contenedor principal
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Volume2, Play } from "lucide-react";
 import "./ProgramasProductor.css";
 import Sidebar from "../../sidebar/Sidebar";
@@ -10,93 +9,102 @@ const fxProgramas = [
     duration: "00:05",
     type: "Programa Matutino",
     label: "intro",
-    labelClass: "intro",
   },
   {
     title: "Transición Musical",
-    duration: "1:00",
+    duration: "01:00",
     type: "Tarde Musical",
     label: "transition",
-    labelClass: "transition",
   },
   {
     title: "Efecto Deportes",
-    duration: "0:40",
+    duration: "00:40",
     type: "Deportes en Vivo",
     label: "special",
-    labelClass: "special",
   },
   {
     title: "RadioHead",
-    duration: "1:40h",
+    duration: "01:40h",
     type: "Podcast en Vivo",
     label: "special",
-    labelClass: "special",
   },
   {
     title: "OPP of OPP",
-    duration: "1:00h",
+    duration: "01:00h",
     type: "Podcast en Vivo",
-    label: "special",
-    labelClass: "special",
+    label: "separator",
   },
 ];
 
 function ProgramasProductor() {
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
-  const rol = "productor";
-  const filtered = fxProgramas.filter((fx) => {
-    const searchText = search ? search.toLowerCase() : "";
-    const matchesSearch =
-      fx.title.toLowerCase().includes(searchText) ||
-      fx.type.toLowerCase().includes(searchText) ||
-      fx.label.toLowerCase().includes(searchText);
-    const matchesCategory =
-      !category ||
-      (category === "Intro" && fx.labelClass === "intro") ||
-      (category === "Outro" && fx.labelClass === "outro") ||
-      (category === "Separator" && fx.labelClass === "separator") ||
-      (category === "Id" && fx.labelClass === "id") ||
-      (category === "Transition" && fx.labelClass === "transition") ||
-      (category === "Special" && fx.labelClass === "special");
-    return matchesSearch && matchesCategory;
-  });
+  const [showLibrary, setShowLibrary] = useState(false);
+  const [visibleItems, setVisibleItems] = useState([]);
+  const [playingIdx, setPlayingIdx] = useState(null);
+  const audioRef = useRef(null);
+
+  const handlePlay = (idx) => {
+    if (audioRef.current) audioRef.current.pause();
+    audioRef.current = new Audio("https://cdn.pixabay.com/audio/2022/10/16/audio_12b6b1b7b7.mp3");
+    audioRef.current.play();
+    setPlayingIdx(idx);
+    audioRef.current.onended = () => setPlayingIdx(null);
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowLibrary(true), 200);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (showLibrary) {
+      fxProgramas.forEach((_, i) => {
+        setTimeout(() => {
+          setVisibleItems((prev) => [...prev, i]);
+        }, 600 + i * 200);
+      });
+    }
+  }, [showLibrary]);
+
   return (
     <div className="dashboard-root">
-      <Sidebar active={1} userType="operador" userName="Pepe Pascal" />
+      <Sidebar active="programas-productor" userType="productor" userName="Pepe Pascal" />
+
       <div className="container">
         <div className="container-bg"></div>
 
-        <header className="mp-header">
-          <h1 className="mp-title">Programas Asignados</h1>
-          <p className="mp-description">
-            Consulta y gestiona los programas que tienes a tu cargo.
-          </p>
+        <header className="pp-header">
+          <div className="pp-header-info">
+            <h1 className="pp-title">Programas Asignados</h1>
+            <p className="pp-desc">Consulta y gestiona los programas a tu cargo.</p>
+          </div>
         </header>
 
         <main className="main-container">
-          <section className="mp-programas-section">
-            {programas.map((prog, idx) => (
-              <div key={idx} className="mp-card-wrapper">
-                <div
-                  className="mp-programa-card"
-                  style={{ backgroundImage: `url(${prog.imagen})` }}
-                >
-                  <Volume2 className="mp-card-icon" />
-                  <button
-                    className="mp-card-play"
-                    onClick={() => navigate(`/programa/${idx}`)}
-                  >
-                    <Play size={28} />
+          <section className={`pp-library ${showLibrary ? "show" : ""}`}>
+            <div className="pp-list">
+              {fxProgramas.map((fx, i) => (
+                <div key={i} className={`pp-item ${visibleItems.includes(i) ? "show" : ""}`}>
+                  <button className={`pp-play-btn ${playingIdx === i ? "playing" : ""}`} onClick={() => handlePlay(i)}>
+                    <Play size={18} />
                   </button>
-                  <div className="mp-card-info">
-                    <span className="mp-card-title">{prog.nombre}</span>
-                    <span className="mp-card-creator">by {prog.creador}</span>
+                  {/* Icono principal */}
+                  <div className="pp-icon">
+                    <Volume2 size={26} color="#fff"/>
+                    <span className="pp-duration">{fx.duration}</span>
                   </div>
+
+                  {/* Info */}
+                  <div className="pp-info">
+                    <h3 className="pp-item-title">{fx.title}</h3>
+                    <p className="pp-item-meta">
+                      {fx.type} • <span className={`pp-label ${fx.label}`}>{fx.label}</span>
+                    </p>
+                  </div>
+
                 </div>
-              </div>
-            ))}
+              ))}
+              {fxProgramas.length === 0 && <p className="pp-empty">No hay programas asignados.</p>}
+            </div>
           </section>
         </main>
       </div>

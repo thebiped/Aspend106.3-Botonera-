@@ -1,69 +1,68 @@
 import Sidebar from "../../sidebar/Sidebar";
 import { Shield, Edit2, Trash2, User, Lock, AlertTriangle } from "lucide-react";
-import "./Perfil.css";
-function Perfil() {
+import "./PerfilAdmin.css";
+
+function PerfilAdmin() {
   return (
     <div className="dashboard-root">
       <Sidebar active="perfil" />
       <div className="container">
         <div className="container-bg" />
         <div className="programs-header">
-          <div className="programs-header-info">
-            <h1 className="programs-title">Perfil Personal</h1>
-            <p className="programs-desc">
-              Actualiza tu información personal, foto de perfil y preferencias
-              dentro del sistema.
-            </p>
-          </div>
+          <h1 className="programs-title">Perfil Personal</h1>
+          <p className="programs-desc">
+            Actualiza tu información personal, foto de perfil y preferencias
+            dentro del sistema.
+          </p>
         </div>
         <main className="main-container">
           <div className="main-container-perfil">
-            <div className="perfil-main">
-              <section className="perfil-card perfil-info">
-                <div className="perfil-card-header">
-                  <div className="perfil-card-encabezado">
-                    <div className="perfil-card-encabezado-title">
+            <div className="fpa-main">
+              <section className="fpa-card fpa-info">
+                <div className="fpa-card-header">
+                  <div className="fpa-card-encabezado">
+                    <div className="fpa-card-encabezado-title">
                       <User size={26} />
-                      <h2 className="perfil-card-title">
+                      <h2 className="fpa-card-title">
                         Información Personal
                       </h2>
                     </div>
-                    <p className="perfil-card-desc">
+                    <p className="fpa-card-desc">
                       Actualiza tus datos personales
                     </p>
                   </div>
-                  <button className="perfil-edit-btn" title="Editar">
+                  <button className="fpa-edit-btn" title="Editar">
                     <Edit2 size={18} />
                   </button>
                 </div>
-                <div className="perfil-user-row">
-                  <div className="perfil-avatar">PP</div>
-                  <div className="perfil-user-info">
-                    <h2 className="perfil-user-name">
+                <div className="fpa-user-row">
+                  <div className="fpa-avatar">PP</div>
+                  <div className="fpa-user-info">
+                    <h2 className="fpa-user-name">
                       Pepe Pascal
-                      <span className="perfil-role perfil-role-operador">
-                        Operador
+                      <span className="fpa-role fpa-role-admin">
+                        Administrador
                       </span>
                     </h2>
-                    <h3 className="perfil-user-data">
+                    <h4 className="fpa-user-data">
                       Email: usuario@gmail.com
-                    </h3>
-                    <h3 className="perfil-user-data">
+                    </h4>
+                    <h4 className="fpa-user-data">
                       Teléfono: +54 11 9876-5432
-                    </h3>
-                    <p className="perfil-user-data">
+                    </h4>
+                    <p className="fpa-user-data">
                       Dirección: Av. San Martín, San Isidro, Buenos Aires
                       Argentina
                     </p>
                   </div>
                 </div>
               </section>
-              <section className="perfil-card perfil-password">
-                <div className="perfil-password-header">
+              <section className="fpa-card fpa-password">
+                <div className="fpa-password-header">
                   <Shield size={26} />
-                  <h2 className="perfil-card-title">Cambiar Contraseña</h2>
+                  <h2 className="fpa-card-title">Cambiar Contraseña</h2>
                 </div>
-                <form className="perfil-password-form">
+                <form className="fpa-password-form">
                   <div className="input-group">
                     <label>Contraseña Actual</label>
                     <div className="input-group-wrapper">
@@ -95,23 +94,23 @@ function Perfil() {
                     </div>
                   </div>
                   <div className="action">
-                    <button className="perfil-password-btn" type="submit">
+                    <button className="fpa-password-btn" type="submit">
                       Actualizar Contraseña
                     </button>
                   </div>
                 </form>
               </section>
             </div>
-            <section className="perfil-card perfil-danger">
-              <div className="perfil-danger-header">
-                <div className="perfil-danger-header-title">
+            <section className="fpa-card fpa-danger">
+              <div className="fpa-danger-header">
+                <div className="fpa-danger-header-title">
                   <AlertTriangle size={26} />
-                  <h2 className="perfil-card-title">Zona de Peligro</h2>
+                  <h2 className="fpa-card-title">Zona de Peligro</h2>
                 </div>
-                <p className="perfil-card-desc">Acciones irreversibles</p>
+                <p className="fpa-card-desc">Acciones irreversibles</p>
               </div>
-              <button className="perfil-danger-btn">Desactivar Cuenta</button>
-              <button className="perfil-danger-btn perfil-danger-delete">
+              <button className="fpa-danger-btn">Desactivar Cuenta</button>
+              <button className="fpa-danger-btn fpa-danger-delete">
                 <Trash2 size={16} /> Eliminar Cuenta
               </button>
             </section>
@@ -121,4 +120,4 @@ function Perfil() {
     </div>
   );
 }
-export default Perfil;
+export default PerfilAdmin;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddEffectModal from "./modal/Add/AddEffectModal";
 import EditEffectModal from "./modal/Edit/EditEffectModal";
 import Sidebar from "../../sidebar/Sidebar";
@@ -42,6 +42,7 @@ function Effects() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [effectToEdit, setEffectToEdit] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const programs = programsData.filter((p) => {
     const matchesSearch =
@@ -51,10 +52,10 @@ function Effects() {
     const matchesType = !type || p.type === type;
     return matchesSearch && matchesType;
   });
-
-  const handleSaveFx = (fxData) => {
-    setModalOpen(false);
-  };
+  
+    const handleSaveFx = (fxData) => {
+      setModalOpen(false);
+    };
 
   const handleEdit = (effect) => {
     setEffectToEdit(effect);
@@ -65,6 +66,11 @@ function Effects() {
     setEditModalOpen(false);
     setEffectToEdit(null);
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="dashboard-root">
@@ -90,65 +96,81 @@ function Effects() {
         </div>
         <main className="main-container">
           <section className="effects-section">
-            <div className="effects-section-header">
-              <span className="effects-section-title">
-                <Radio size={20} style={{ marginRight: 8 }} /> Lista de
-                Programas
-              </span>
-              <div className="effects-filters">
-                <div className="fxe-input-search-wrapper">
-                  <Search size={18}/>
-                  <input  type="text" placeholder="Buscar programa, operador o productor..." value={search} onChange={(e) => setSearch(e.target.value)}/>
-                </div>
-                <div className="fxe-input-select-wrapper">
-                  <select  value={type} onChange={(e) => setType(e.target.value)}>
-                    <option value="">Todos los tipos</option>
-                    <option value="Operador">Operador</option>
-                    <option value="Jefe de Operadores">Jefe de Operadores</option>
-                    <option value="Productor">Productor</option>
-                  </select>
-                </div>
+            {loading ? (
+              <div className="loading-skeleton">
+                <div className="skeleton-header shimmer-bar"></div>
+                <div className="skeleton-row shimmer-bar"></div>
+                <div className="skeleton-row shimmer-bar"></div>
+                <div className="skeleton-row shimmer-bar"></div>
+                <div className="skeleton-row shimmer-bar"></div>
               </div>
-            </div>
-            <table className="effects-table">
-              <thead>
-                <tr>
-                  <th>Nombre del Programa</th>
-                  <th>Tipo</th>
-                  <th>Cantidad de FX</th>
-                  <th>Operadores</th>
-                  <th>Productores</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {programs.map((p, idx) => (
-                  <tr key={idx}>
-                    <td>{p.name}</td>
-                    <td>
-                      <span
-                        className={`effects-type effects-type-${p.type
-                          .replace(/\s/g, "")
-                          .toLowerCase()}`}
-                      >
-                        {p.type}
-                      </span>
-                    </td>
-                    <td>{p.fx}</td>
-                    <td>{p.operators}</td>
-                    <td>{p.producers}</td>
-                    <td>
-                      <button
-                        className="effects-edit-btn"
-                        onClick={() => handleEdit(p)}
-                      >
-                        Editar
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            ) : (
+              <>
+                <div className="effects-section-header">
+                  <span className="effects-section-title">
+                    <Radio size={20} style={{ marginRight: 8 }} /> Lista de Programas
+                  </span>
+                  <div className="effects-filters">
+                    <div className="fxe-input-search-wrapper">
+                      <Search size={18} />
+                      <input
+                        type="text"
+                        placeholder="Buscar programa, operador o productor..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                      />
+                    </div>
+                    <div className="fxe-input-select-wrapper">
+                      <select value={type} onChange={(e) => setType(e.target.value)}>
+                        <option value="">Todos los tipos</option>
+                        <option value="Operador">Operador</option>
+                        <option value="Jefe de Operadores">Jefe de Operadores</option>
+                        <option value="Productor">Productor</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <table className="effects-table">
+                  <thead>
+                    <tr>
+                      <th>Nombre del Programa</th>
+                      <th>Tipo</th>
+                      <th>Cantidad de FX</th>
+                      <th>Operadores</th>
+                      <th>Productores</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {programs.map((p, idx) => (
+                      <tr key={idx}>
+                        <td>{p.name}</td>
+                        <td>
+                          <span
+                            className={`effects-type effects-type-${p.type
+                              .replace(/\s/g, "")
+                              .toLowerCase()}`}
+                          >
+                            {p.type}
+                          </span>
+                        </td>
+                        <td>{p.fx}</td>
+                        <td>{p.operators}</td>
+                        <td>{p.producers}</td>
+                        <td>
+                          <button
+                            className="effects-edit-btn"
+                            onClick={() => handleEdit(p)}
+                          >
+                            Editar
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </>
+            )}
           </section>
         </main>
         <AddEffectModal

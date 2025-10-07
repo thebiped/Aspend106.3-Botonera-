@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../../sidebar/Sidebar";
 import { Plus } from "lucide-react";
 import AddUserModal from "./modal/Add/AddUserModal";
@@ -26,6 +26,7 @@ function Users() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [loading, setLoading] = useState(true); 
 
   const users = usersData.filter((u) => {
     const matchesSearch =
@@ -52,6 +53,12 @@ function Users() {
     setEditModalOpen(false);
   };
 
+  
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2500); // 2.5s de animación
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="dashboard-root">
       <Sidebar active="usuarios" />
@@ -77,60 +84,82 @@ function Users() {
         </div>
         <main className="main-container">
           <section className="users-section">
-            <div className="users-section-header">
-              <span className="users-section-title">Lista de Usuarios</span>
-              <div className="users-filters">
-                <div className="fxu-input-search-wrapper">
-                  <input type="text" placeholder="Buscar usuario o programa..." value={search} onChange={(e) => setSearch(e.target.value)}/>
-                </div>
-                <div className="fxu-input-select-wrappper">
-                  <select value={role} onChange={(e) => setRole(e.target.value)}>
-                    <option value="">Todos los roles</option>
-                    <option value="Operador">Operador</option>
-                    <option value="Jefe de Operadores">Jefe de Operadores</option>
-                    <option value="Productor">Productor</option>
-                  </select>
-                </div>
+            {loading ? (
+              <div className="loading-skeleton">
+                <div className="skeleton-header shimmer-bar"></div>
+                <div className="skeleton-row shimmer-bar"></div>
+                <div className="skeleton-row shimmer-bar"></div>
+                <div className="skeleton-row shimmer-bar"></div>
+                <div className="skeleton-row shimmer-bar"></div>
               </div>
-            </div>
-            <table className="users-table">
-              <thead>
-                <tr>
-                  <th>Nombre de Usuario</th>
-                  <th>Rol</th>
-                  <th>Programas Asignados</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user, idx) => (
-                  <tr key={idx}>
-                    <td>{user.name}</td>
-                    <td>
-                      <span
-                        className={`users-role users-role-${user.role
-                          .replace(/\s/g, "")
-                          .toLowerCase()}`}
-                      >
-                        {user.role}
-                      </span>
-                    </td>
-                    <td>{user.programs}</td>
-                    <td>
-                      <button
-                        className="users-edit-btn"
-                        onClick={() => {
-                          setSelectedUser(user);
-                          setEditModalOpen(true);
+            ) : (
+              <>
+                <div className="users-section-header">
+                  <span className="users-section-title">Lista de Usuarios</span>
+                  <div className="users-filters">
+                    <div className="fxu-input-search-wrapper">
+                      <input
+                        type="text"
+                        placeholder="Buscar usuario o programa..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                      />
+                    </div>
+                    <div className="fxu-input-select-wrappper">
+                      <select value={role} onChange={(e) => setRole(e.target.value)}>
+                        <option value="">Todos los roles</option>
+                        <option value="Operador">Operador</option>
+                        <option value="Jefe de Operadores">Jefe de Operadores</option>
+                        <option value="Productor">Productor</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <table className="users-table">
+                  <thead>
+                    <tr>
+                      <th>Nombre de Usuario</th>
+                      <th>Rol</th>
+                      <th>Programas Asignados</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {users.map((user, idx) => (
+                      <tr
+                        key={idx}
+                        style={{
+                          animationDelay: `${idx * 0.15}s`,
                         }}
                       >
-                        Editar
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                        <td>{user.name}</td>
+                        <td>
+                          <span
+                            className={`users-role users-role-${user.role
+                              .replace(/\s/g, "")
+                              .toLowerCase()}`}
+                          >
+                            {user.role}
+                          </span>
+                        </td>
+                        <td>{user.programs}</td>
+                        <td>
+                          <button
+                            className="users-edit-btn"
+                            onClick={() => {
+                              setSelectedUser(user);
+                              setEditModalOpen(true);
+                            }}
+                          >
+                            Editar
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </>
+            )}
           </section>
         </main>
         <AddUserModal

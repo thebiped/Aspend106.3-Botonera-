@@ -68,9 +68,9 @@ function FxInstitucionales({ rol = "operador" }) {
       />
       <div className="container">
         <div className="container-bg"></div>
-          <header className="fx-header">
-            <h1 className="fx-title">Efectos Institucionales</h1>
-            <p className="fx-description">
+          <header className="fxio-header">
+            <h1 className="fxio-title">Efectos Institucionales</h1>
+            <p className="fxio-description">
               Accede a la biblioteca de efectos oficiales de la emisora,
               disponibles para todos los operadores.
             </p>
@@ -78,27 +78,27 @@ function FxInstitucionales({ rol = "operador" }) {
         <div className="main-container">
 
           {/* 🔹 Sección en GRID */}
-          <section className="fx-section">
-            <h2 className="fx-section-title">Biblioteca en Lista</h2>
-            <div className="fx-list">
+          <section className="fxio-section">
+            <h2 className="fxio-section-title">Biblioteca en Lista</h2>
+            <div className="fxio-list">
               {fxList.map((fx, idx) => (
-                <div key={idx} className={`fx-list-item ${visibleItems.includes(idx) ? "show" : ""}`} style={{ animationDelay: `${0.2 + idx * 0.15}s` }} 
+                <div key={idx} className={`fxio-list-item ${visibleItems.includes(idx) ? "show" : ""}`} style={{ animationDelay: `${0.2 + idx * 0.15}s` }} 
                 >
                   <button
-                    className={`fx-list-play ${playingIdx === idx ? "playing" : ""}`}
+                    className={`fxio-list-play ${playingIdx === idx ? "playing" : ""}`}
                     onClick={() => handlePlay(idx)}
                   >
                     <Play size={18} />
                   </button>
-                  <div className="fx-list-icon">
+                  <div className="fxio-list-icon">
                     <Volume2 size={26} color="#fff" />
-                    <span className="fx-list-duration">{fx.duration}</span>
+                    <span className="fxio-list-duration">{fx.duration}</span>
                   </div>
-                  <div className="fx-list-info">
-                    <h3 className="fx-list-title">{fx.title}</h3>
-                    <p className="fx-list-tags">
+                  <div className="fxio-list-info">
+                    <h3 className="fxio-list-title">{fx.title}</h3>
+                    <p className="fxio-list-tags">
                       {fx.tags.map((tag, i) => (
-                        <span key={i} className={`fx-list-label ${tag.toLowerCase()}`}>
+                        <span key={i} className={`fxio-list-label ${tag.toLowerCase()}`}>
                           {tag}
                         </span>
                       ))}
