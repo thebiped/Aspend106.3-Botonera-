@@ -68,4 +68,27 @@ router.post('/login', (req, res) => {
   );
 });
 
+// Obtener datos de usuario por ID
+router.get('/user/:id', (req, res) => {
+  const { id } = req.params;
+  const db = req.db;
+
+  db.get(`SELECT * FROM usuario WHERE id_usuario = ?`, [id], (err, usuario) => {
+    if (err) return res.status(500).json({ error: "Error de servidor" });
+    if (!usuario) return res.status(404).json({ error: "Usuario no encontrado" });
+
+    const safeUser = {
+      id_usuario: usuario.id_usuario,
+      n_usuario: usuario.n_usuario,
+      tipo: usuario.tipo,
+      gmail: usuario.gmail,
+      telefono: usuario.telefono || "",
+      direccion: usuario.direccion || ""
+    };
+
+    res.json({ usuario: safeUser });
+  });
+});
+
+
 module.exports = router;

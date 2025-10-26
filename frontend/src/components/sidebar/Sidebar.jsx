@@ -1,176 +1,147 @@
-import {
-  Home,
-  Radio,
-  Settings,
-  Users,
-  Volume2,
-  ListMusic,
-  Waves,
-  AudioLines,
-} from "lucide-react";
-import React, { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./Sidebar.css";
+import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { 
+  FaUsers, 
+  FaHome, 
+  FaMusic, 
+  FaBook, 
+  FaFolderOpen, 
+  FaCog, 
+  FaWaveSquare 
+} from "react-icons/fa"; 
+import './Sidebar.css'
 
-function Sidebar({ active, userType = "operador", userName = "Pepe Pascal" }) {
-  function getRoute(label) {
-    if (userType === "admin") {
-      switch (label) {
-        case "Inicio":
-          return "admin/dashboard";
-        case "Programas":
-          return "admin/programas";
-        case "Usuarios":
-          return "admin/usuarios";
-        case "Efectos":
-          return "admin/efectos";
-        case "Perfil":
-          return "admin/perfil";
-        default:
-          return "admin/dashboard";
-      }
-    } else if (userType === "productor") {
-      switch (label) {
-        case "Programas":
-          return "/productor/programas";
-        case "FX Institucionales":
-          return "/productor/efectos";
-        case "Perfil":
-          return "/productor/perfil";
-        default:
-          return "/productor/programas";
-      }
-    } else {
-      switch (label) {
-        case "Inicio":
-          return "/operador/dashboard";
-        case "Mis programas":
-          return "/operador/misprogramas";
-        case "Mis FX":
-          return "/operador/misfx";
-        case "FX Institucionales":
-          return "/operador/fxinstitucionales";
-        case "Panel de Operadores":
-          return "/operador/panel";
-        default:
-          return "/operador/dashboard";
-      }
-    }
-  }
+const Sidebar = ({ userType = "operador", userName = "Pepe Pascal" }) => {
+  const navigate = useNavigate();
+
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef();
+  const menuRef = useRef(null);
 
+  // NavItems por rol
+  const navItems = {
+    admin: [
+      { label: "Inicio", icon: <FaHome size={20} /> },
+      { label: "Usuarios", icon: <FaUsers size={20} /> },
+      { label: "Gestion FX", icon: <FaMusic size={20} /> },
+      { label: "Mis Efectos", icon: <FaFolderOpen size={20} /> },
+      { label: "Biblioteca FX", icon: <FaBook size={20} /> },
+    ],
+    operador: [
+      { label: "Inicio", icon: <FaHome size={20} /> },
+      { label: "Mis Efectos", icon: <FaFolderOpen size={20} /> },
+      { label: "Biblioteca FX", icon: <FaBook size={20} /> },
+    ],
+    productor: [
+      { label: "Biblioteca FX", icon: <FaBook size={20} /> },
+    ],
+  }[userType] || [];
+
+  const roleLabel = {
+    admin: "Administrador",
+    operador: "Operador",
+    productor: "Productor",
+  }[userType || "operador"];
+
+  // Rutas por label y rol
+  const getRoute = (label) => {
+    const routes = {
+      admin: {
+        Inicio: "/admin/dashboard",
+        Usuarios: "/admin/usuarios",
+        "Gestion FX": "/admin/efectos",
+        "Mis Efectos": "/admin/mis-efectos",
+        "Biblioteca FX": "/admin/biblioteca-fx",
+      },
+      operador: {
+        Inicio: "/operador/dashboard",
+        "Mis Efectos": "/operador/mis-efectos",
+        "Biblioteca FX": "/operador/biblioteca-fx",
+      },
+      productor: {
+        "Biblioteca FX": "/productor/biblioteca-fx",
+      },
+    };
+    return routes[userType]?.[label] || "/";
+  };
+
+  // Cerrar menú al hacer clic fuera
   useEffect(() => {
-    function handleClickOutside(e) {
+    const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
         setMenuOpen(false);
       }
-    }
+    };
     if (menuOpen) document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpen]);
 
-  let navItems = [];
-  let roleLabel = "Operador";
-  if (userType === "admin") {
-    roleLabel = "Administrador";
-    navItems = [
-      { label: "Inicio", icon: <Home size={20} /> },
-      { label: "Programas", icon: <Radio size={20} /> },
-      { label: "Usuarios", icon: <Users size={20} /> },
-      { label: "Efectos", icon: <Volume2 size={20} /> },
-      { label: "Configuración", icon: <Settings size={20} /> },
-    ];
-  } else if (userType === "jefe-operador") {
-    roleLabel = "Jefe de Operadores";
-    navItems = [
-      { label: "Inicio", icon: <Home size={20} /> },
-      { label: "Mis programas", icon: <ListMusic size={20} /> },
-      { label: "Mis FX", icon: <Waves size={20} /> },
-      { label: "FX Institucionales", icon: <Radio size={20} /> },
-      { label: "Panel de Operadores", icon: <Radio size={20} /> },
-    ];
-  } else if (userType === "productor") {
-    roleLabel = "Productor";
-    navItems = [
-      { label: "Programas", icon: <Radio size={20} /> },
-      { label: "FX Institucionales", icon: <Volume2 size={20} /> },
-      { label: "Perfil", icon: <Settings size={20} /> },
-    ];
-  } else {
-    navItems = [
-      { label: "Inicio", icon: <Home size={20} /> },
-      { label: "Mis programas", icon: <ListMusic size={20} /> },
-      { label: "Mis FX", icon: <Waves size={20} /> },
-      { label: "FX Institucionales", icon: <Radio size={20} /> },
-    ];
-  }
-
   return (
-    <aside className="sidebar">
+    <aside className="sidebar" role="navigation">
       <div className="sidebar-logo">
-        <span className="sidebar-logo-icon">
-          <AudioLines size={28} color="#b536ff"/>
-        </span>
+        <FaWaveSquare size={28} color="#b536ff" />
         <span className="sidebar-logo-text">Aspen 102.6</span>
       </div>
+
       <nav className="sidebar-nav">
         <ul>
-          {navItems.map((item, idx) => (
-            <Link to={getRoute(item.label)} key={item.label}>
-              <li
-                className={`nav-item${
-                  active === idx ? " nav-item-active" : ""
-                }`}
-              >
-                <span className="nav-icon">{item.icon}</span>
-                <span className="nav-label">{item.label}</span>
-              </li>
-            </Link>
+          {navItems.map((item) => (
+            <li
+              key={item.label}
+              className="nav-item"
+              onClick={() => navigate(getRoute(item.label), { replace: true })}
+            >
+              <span className="nav-icon">{item.icon}</span>
+              <span className="nav-label">{item.label}</span>
+            </li>
           ))}
         </ul>
       </nav>
+
       <div className="sidebar-user">
         <div className="sidebar-user-content">
           <div className="user-avatar">
-          {userName
-            .split(" ")
-            .map((n) => n[0])
-            .join("")}
-        </div>
-        <div className="user-info">
-          <div className="user-name">
-            {userType === "admin" ? "Jose Alberto P" : userName}
+            {String(userName)
+              .split(" ")
+              .map((n) => n[0])
+              .join("")}
           </div>
-          <div className="user-role">{roleLabel}</div>
-        </div>
-        <div className="user-settings-menu-wrapper" ref={menuRef}>
-          <button
-            className="user-settings"
-            aria-label="Ajustes"
-            onClick={() => setMenuOpen((v) => !v)}
-          >
-            <Settings size={20} />
-          </button>
-          {menuOpen && (
-            <div className="user-dropdown-menu">
-              <Link to="/perfil" className="user-dropdown-item">
-                Ver perfil
-              </Link>
-              <button
-                className="user-dropdown-item"
-                onClick={() => {
-                }}
-              >
-                Cerrar sesión
-              </button>
-            </div>
-          )}
-        </div>
+
+          <div className="user-info">
+            <div className="user-name">{userName}</div>
+            <div className="user-role">{roleLabel}</div>
+          </div>
+
+          <div className="user-settings-menu-wrapper" ref={menuRef}>
+            <button
+              className="user-settings"
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              <FaCog size={20} />
+            </button>
+            {menuOpen && (
+              <div className="user-dropdown-menu">
+                <button
+                  className="user-dropdown-item"
+                  onClick={() => navigate("/perfil", { replace: true })}
+                >
+                  Ver perfil
+                </button>
+                <button
+                  className="user-dropdown-item"
+                  onClick={() => {
+                    localStorage.removeItem("user");
+                    navigate("/", { replace: true });
+                  }}
+                >
+                  Cerrar sesión
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </aside>
   );
-}
+};
 
 export default Sidebar;
