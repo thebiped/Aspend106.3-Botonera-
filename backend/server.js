@@ -1,22 +1,17 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const sqlite3 = require('sqlite3');
+const express = require("express")
+const cors = require("cors")
+const path = require("path")
+const sqlite3 = require("sqlite3")
 
 // Instancia de la base de datos
-const dbPath = path.resolve(__dirname, './botonera.db');
+const dbPath = path.resolve(__dirname, "./botonera.db")
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
-    console.error('❗ No se pudo crear la BD');
+    console.error("❗ No se pudo crear la BD")
   } else {
-    console.log('✔ Se creó correctamente la BD');
+    console.log("✔ Se creó correctamente la BD")
   }
-});
-
-// Crear tablas si no existen
-// ...usuario
-// ...subtipo
-// ...s_personales
+})
 
 db.run(`
   CREATE TABLE IF NOT EXISTS usuario (
@@ -26,14 +21,15 @@ db.run(`
     tipo TEXT,
     gmail TEXT UNIQUE
   )
-`);
+`)
 
 db.run(`
   CREATE TABLE IF NOT EXISTS subtipo (
     id_subtipo INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre_subtipo TEXT
+    nombre_subtipo TEXT,
+    puntos INTEGER
   )
-`);
+`)
 
 db.run(`
   CREATE TABLE IF NOT EXISTS s_personales (
@@ -43,20 +39,66 @@ db.run(`
     url_img TEXT,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
   )
-`);
+`)
+
+db.run(`
+  CREATE TABLE IF NOT EXISTS programas (
+    id_programa INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL,
+    descripcion TEXT,
+    horario TEXT
+  )
+`)
+
+db.run(`
+  CREATE TABLE IF NOT EXISTS sonidos (
+    id_sonido INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre_sonido TEXT NOT NULL,
+    url_sonidos TEXT,
+    url_img TEXT
+  )
+`)
+
+db.run(`
+  CREATE TABLE IF NOT EXISTS programa_sonidos (
+    id_programa_sonidos INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_programa INTEGER,
+    id_sonido INTEGER,
+    FOREIGN KEY (id_programa) REFERENCES programas(id_programa),
+    FOREIGN KEY (id_sonido) REFERENCES sonidos(id_sonido)
+  )
+`)
+
+db.run(`
+  CREATE TABLE IF NOT EXISTS sonidos_institucionales (
+    id_sonidos_institucionales INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT NOT NULL,
+    url_img TEXT,
+    url_sonido TEXT
+  )
+`)
 
 // Servidor Express
-const app = express();
-app.use(express.json());
-app.use(cors());
+const app = express()
+app.use(express.json())
+app.use(cors())
 
 // Pasar la instancia de db a los routers
 app.use((req, res, next) => {
-  req.db = db;
-  next();
-});
+  req.db = db
+  next()
+})
 
-const authRouter = require('./routers/auth');
-app.use('/api/auth', authRouter);
+const authRouter = require("./routers/auth")
+const programasRouter = require("./routers/programas")
+const sonidosRouter = require("./routers/sonidos")
+const sonidosInstitucionalesRouter = require("./routers/sonidos-institucionales")
+const usuariosRouter = require("./routers/usuarios")
 
-app.listen(3001, () => console.log('Servidor backend en puerto 3001'));
+app.use("/api/auth", authRouter)
+app.use("/api/programas", programasRouter)
+app.use("/api/sonidos", sonidosRouter)
+app.use("/api/sonidos-institucionales", sonidosInstitucionalesRouter)
+app.use("/api/usuarios", usuariosRouter)
+
+app.listen(3001, () => console.log("Servidor backend en puerto 3001"))

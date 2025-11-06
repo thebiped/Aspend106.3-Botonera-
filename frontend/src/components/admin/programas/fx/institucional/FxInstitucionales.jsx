@@ -51,27 +51,29 @@ function FxInstitucional() {
   });
 
   return (
-    <div className="me-library">
-      <div className="me-library-header">
+    <div className="fxai-library">
+      <div className="fxai-library-header">
         <h2>🎧 FX Institucional</h2>
-        <button className="me-add-btn" onClick={() => setModalOpen(true)}>
+        <button className="sparkle-button" onClick={() => setModalOpen(true)}>
           + Agregar FX
+          <span className="spark"></span>
+          <span className="backdrop"></span>
         </button>
       </div>
 
       {/* Filtros */}
-      <div className="me-library-filters">
-        <div className="me-input-group">
-          <div className="me-input-wrapper">
+      <div className="fxai-library-filters">
+        <div className="fxai-input-group">
+          <div className="fxai-input-wrapper">
             <Search size={18} color="#b8b8b8" />
-            <input id="me-search" type="text" placeholder="Buscar me..." value={search} onChange={(e) => setSearch(e.target.value)}/>
+            <input id="fxai-search" type="text" placeholder="Buscar me..." value={search} onChange={(e) => setSearch(e.target.value)}/>
           </div>
         </div>
 
-        <div className="me-input-select">
-          <div className="me-input-select-wrapper">
+        <div className="fxai-input-select">
+          <div className="fxai-input-select-wrapper">
             <Search size={18} color="#b8b8b8" />
-            <select id="me-filter" value={filter} onChange={(e) => setFilter(e.target.value)}>
+            <select id="fxai-filter" value={filter} onChange={(e) => setFilter(e.target.value)}>
               <option value="all">Todos</option>
               <option value="intro">Intro</option>
               <option value="special">Especial</option>
@@ -81,28 +83,28 @@ function FxInstitucional() {
         </div>
       </div>
 
-      <div className="me-list">
+      <div className="fxai-list">
         {filteredFx.length > 0 ? (
           filteredFx.map((fx, i) => (
-            <div key={i} className="me-item">
+            <div key={i} className="fxai-item">
               <button
-                className={`me-play-btn ${playingIdx === i ? "playing" : ""}`}
+                className={`fxai-play-btn ${playingIdx === i ? "playing" : ""}`}
                 onClick={() => handlePlay(i, fx.audio)}
               >
                 <Play size={18} />
               </button>
 
-              <div className="me-icon">
+              <div className="fxai-icon">
                 <Volume2 size={28} />
-                <span className="me-duration">{fx.duration}</span>
+                <span className="fxai-duration">{fx.duration}</span>
               </div>
 
-              <div className="me-info">
-                <h3 className="me-title">{fx.title}</h3>
-                <p className="me-meta">
+              <div className="fxai-info">
+                <h3 className="fxai-title">{fx.title}</h3>
+                <p className="fxai-meta">
                   {fx.program} •{" "}
                   {fx.tags.map((tag, idx) => (
-                    <span key={idx} className={`me-label ${tag.toLowerCase()}`}>
+                    <span key={idx} className={`fxai-label ${tag.toLowerCase()}`}>
                       {tag}
                     </span>
                   ))}
@@ -111,7 +113,7 @@ function FxInstitucional() {
             </div>
           ))
         ) : (
-          <p className="me-empty">No hay efectos disponibles.</p>
+          <p className="fxai-empty">No hay efectos disponibles.</p>
         )}
       </div>
     </div>

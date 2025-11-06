@@ -1,31 +1,31 @@
-
 /* Header principal */
 .header {
   margin-bottom: 24px;
 }
 .title {
-  margin-bottom: 8px;
+  margin: 0;
   font-family: "Koh Santepheap", sans-serif;
   font-size: 2.2rem;
   color: #fff;
 }
 .description {
-  color: #b8b8b8;
+  margin: 0;
   font-size: 1.1rem;
+  color: #b8b8b8;
 }
 
 /* Sección FX */
 .me-library {
   padding: 24px;
-  background: rgba(41, 0, 106, 0.4);
-  backdrop-filter: blur(18px);
-  border: 3px solid rgba(255, 123, 211, 0.4);
-  border-radius: 18px;
-  box-shadow: 0 0 12px rgba(21, 0, 255, 0.3), inset 0 0 24px rgba(149, 0, 255, 0.4);
   color: #fff;
-  opacity: 0;
+  background: linear-gradient(to bottom right,  rgba(75, 30, 133, 1),  rgba(75, 30, 133, 0.01));
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(75, 30, 133, 0.5);
+  border-radius: 1.5em;
+  box-shadow: 0 0 12px rgba(75, 30, 133, 0.3),inset 0 0 12px rgba(75, 30, 133, 0.1);
   transform: translateX(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 0;
 }
 
 .me-library.show {

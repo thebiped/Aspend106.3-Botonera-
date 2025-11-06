@@ -91,8 +91,10 @@ function MisEfectos() {
           <div className={`me-library ${showLibrary ? "show" : ""}`}>
             <div className="me-library-header">
               <h2>🎧 Mis Efectos</h2>
-              <button className="me-add-btn" onClick={() => setModalOpen(true)}>
+              <button className="sparkle-button" onClick={() => setModalOpen(true)}>
                 + Agregar FX
+                <span className="spark"></span>
+                <span className="backdrop"></span>
               </button>
             </div>
 
