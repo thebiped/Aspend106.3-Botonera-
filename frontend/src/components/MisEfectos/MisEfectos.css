@@ -1,0 +1,137 @@
+/* === Contenedor general === */
+.mis-efectos-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  color: #fff;
+  background: #0c0a25;
+}
+
+/* === Sección === */
+.mis-efectos-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.mis-efectos-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mis-efectos-header h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  font-family: "koh santepheap";
+}
+
+/* === Etiqueta === */
+.mis-efectos-tag {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  letter-spacing: 0.3px;
+}
+
+.mis-efectos-tag.institucional {
+  background: rgba(10, 255, 157, 0.15);
+  color: #0aff9d;
+}
+
+.mis-efectos-tag.personal {
+  background: rgba(0, 157, 255, 0.15);
+  color: #009dff;
+}
+
+/* === Grid estilo Spotify === */
+.mis-efectos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+/* === Card estilo playlist === */
+.mis-efectos-card {
+  position: relative;
+  padding: 1rem;
+  border-radius: 12px;
+  background: linear-gradient(
+    to bottom right,
+    rgba(75, 30, 133, 1),
+    rgba(75, 30, 133, 0.01)
+  );
+  box-shadow: 0 0 12px rgba(75, 30, 133, 0.3),
+    inset 0 0 12px rgba(75, 30, 133, 0.1);
+  transition: transform 0.25s ease, background 0.25s ease;
+  cursor: pointer;
+}
+
+.mis-efectos-card:hover {
+  background: linear-gradient(
+    to bottom right,
+    rgb(102, 37, 187),
+    rgba(113, 32, 219, 0.1)
+  );
+  transform: translateY(-4px);
+}
+
+/* === Fondo del card (imagen/fondo de color) === */
+.mis-efectos-thumb {
+  position: relative;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #5f00ad, #832ae9);
+  border-radius: 10px;
+}
+
+/* === Botón Play === */
+.mis-efectos-play-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: #fff;
+  background: #df25f0;
+  border: none;
+  border-radius: 50%;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.mis-efectos-card:hover .mis-efectos-play-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mis-efectos-play-btn:hover {
+  background: #bc22ca;
+}
+
+/* === Info del card === */
+.mis-efectos-info {
+  margin-top: 0.8rem;
+}
+
+.mis-efectos-info h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+  color: #fff;
+}
+
+.mis-efectos-info p {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin: 0.3rem 0 0 0;
+}

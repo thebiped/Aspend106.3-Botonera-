@@ -1,0 +1,137 @@
+
+.mis-efectos-audio {
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto";
+  color: #fff;
+  overflow-y: auto;
+}
+
+/* HEADER */
+.mis-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.mis-header h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #1db954;
+}
+
+/* BOTÓN VOLVER */
+.mis-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid #1db954;
+  color: #1db954;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 6px rgba(29, 185, 84, 0.3);
+}
+
+.mis-back-btn:hover {
+  background: #1db954;
+  color: #fff;
+  box-shadow: 0 0 14px rgba(29, 185, 84, 0.6);
+  transform: translateY(-2px);
+}
+
+/* LISTA DE EFECTOS */
+.mis-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mis-item {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 12px 18px;
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeUp 0.6s forwards;
+  animation-delay: calc(var(--delay, 0) * 0.1s);
+  transition: all 0.3s ease;
+}
+
+.mis-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px) scale(1.01);
+}
+
+/* BOTÓN PLAY */
+.mis-play-btn {
+  background: #1db954;
+  border: none;
+  outline: none;
+  color: #fff;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.mis-play-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 14px rgba(29, 185, 84, 0.6);
+}
+
+.mis-play-btn.playing {
+  background: #00bcd4;
+  box-shadow: 0 0 14px rgba(0, 188, 212, 0.6);
+}
+
+/* ICONO Y DURACIÓN */
+.mis-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 16px;
+  color: #ccc;
+  font-size: 0.85rem;
+}
+
+/* INFORMACIÓN DEL FX */
+.mis-info {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mis-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.mis-meta {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+/* ANIMACIONES */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* SCROLL CUSTOM */
+.mis-efectos-audio::-webkit-scrollbar {
+  width: 6px;
+}
+.mis-efectos-audio::-webkit-scrollbar-thumb {
+  background: #1db954;
+  border-radius: 10px;
+}

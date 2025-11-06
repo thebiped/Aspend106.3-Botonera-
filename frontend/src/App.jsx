@@ -1,49 +1,184 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from "react";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import PrivateRoute from "./components/auth/PrivateRoute";
+
+import Sidebar from "./components/sidebar/Sidebar";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Usuarios from "./components/admin/usuarios/Users";
+import GestionFX from "./components/admin/effects/Effects";
+import MisEfectos from "./components/MisEfectos/MisEfectos";
+import MisEfectosAudio from "./components/MisEfectos/MisEfectosAudio";
+import BibliotecaFX from "./components/shared/BibliotecaFX";
+import BibliotecaFXAudio from "./components/shared/BibliotecaFXAudio";
+import Profile from "./components/Profile/Perfil";
 import Login from "./components/Login/Login";
-import Dashboard from "./components/admin/dashboard/Dashboard";
-import Programas from "./components/admin/programas/Programas";
 import Register from "./components/Register/Register";
-import Users from "./components/admin/usuarios/Users";
-import Effects from "./components/admin/effects/Effects";
-import Perfil from "./components/admin/perfil/Perfil";
-import DashboardOperador from "./components/operador/dashboard/Dashboard";
-import ProgramasOperador from "./components/operador/programas/MisProgramas";
-import ProgramaDetalle from "./components/operador/programas/detalle/ProgramaDetalle";
-import MisEfectosOperador from "./components/operador/efectos/MisEfectos";
-import FxInstitucionales from "./components/operador/institucionales/FxInstitucionales";
-import ProgramasProductor from "./components/productor/programas/ProgramasProductor";
-import PerfilProductor from "./components/productor/perfil/PerfilProductor";
-import EfectosProductor from "./components/productor/efectos/EfectosProductor";
+
+import "./index.css";
 
 function App() {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userRole = user?.role || user?.tipo || "";
+  const location = useLocation();
+
+  // Ocultar sidebar en login y register
+  const hideSidebarPaths = ["/", "/register"];
+  const shouldHideSidebar = hideSidebarPaths.includes(location.pathname);
+  const showSidebar = !!user && !shouldHideSidebar;
+
+  const dashboardRoutes = {
+    admin: "/admin/dashboard",
+    operador: "/operador/dashboard",
+    "jefe-operador": "/operador/dashboard",
+    productor: "/productor/biblioteca-fx",
+  };
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-
-        <Route path="admin/dashboard" element={<Dashboard />} />
-        <Route path="admin/programas" element={<Programas />} />
-        <Route path="admin/usuarios" element={<Users />} />
-        <Route path="admin/efectos" element={<Effects />} />
-        <Route path="admin/perfil" element={<Perfil />} />
-
-        <Route path="/operador/dashboard" element={<DashboardOperador />} />
-        <Route path="/operador/programas" element={<ProgramasOperador />} />
-        <Route path="/programa/:id" element={<ProgramaDetalle />} />
-        <Route path="/operador/efectos" element={<MisEfectosOperador />} />
-        <Route
-          path="/operador/institucionales"
-          element={<FxInstitucionales />}
+    <>
+      {showSidebar && (
+        <Sidebar
+          userType={userRole}
+          userName={user?.name || user?.n_usuario || "Usuario"}
         />
-        <Route path="/operador/perfil" element={<Perfil />} />
-        <Route path="/productor/programas" element={<ProgramasProductor />} />
-        <Route path="/productor/efectos" element={<EfectosProductor />} />
-        <Route path="/productor/perfil" element={<PerfilProductor />} />
+      )}
 
-        <Route path="*" element={<Dashboard />} />
-      </Routes>
-    </BrowserRouter>
+      <main
+        className={`app-main ${showSidebar ? "with-sidebar" : "no-sidebar"}`}
+      >
+        <Routes>
+          {/* 🔐 Login / Register */}
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+          {/* Redirección automática según rol */}
+          <Route
+            path="/home"
+            element={
+              user ? (
+                <Navigate to={dashboardRoutes[userRole] || "/login"} replace />
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
+
+          {/* === ADMIN === */}
+          <Route
+            path="/admin/dashboard"
+            element={
+              <PrivateRoute allowedRoles={["admin"]}>
+                <Dashboard role="admin" />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/usuarios"
+            element={
+              <PrivateRoute allowedRoles={["admin"]}>
+                <Usuarios />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/efectos"
+            element={
+              <PrivateRoute allowedRoles={["admin"]}>
+                <GestionFX />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/biblioteca-fx"
+            element={
+              <PrivateRoute allowedRoles={["admin"]}>
+                <BibliotecaFX />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/mis-efectos"
+            element={
+              <PrivateRoute allowedRoles={["admin"]}>
+                <MisEfectos />
+              </PrivateRoute>
+            }
+          />
+
+          {/* === OPERADOR === */}
+          <Route
+            path="/operador/dashboard"
+            element={
+              <PrivateRoute allowedRoles={["operador", "jefe-operador"]}>
+                <Dashboard role="operador" />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/operador/mis-efectos"
+            element={
+              <PrivateRoute allowedRoles={["operador", "jefe-operador"]}>
+                <MisEfectos />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/operador/biblioteca-fx"
+            element={
+              <PrivateRoute allowedRoles={["operador", "jefe-operador"]}>
+                <BibliotecaFX />
+              </PrivateRoute>
+            }
+          />
+
+          {/* === PRODUCTOR === */}
+          <Route
+            path="/productor/biblioteca-fx"
+            element={
+              <PrivateRoute allowedRoles={["productor"]}>
+                <BibliotecaFX />
+              </PrivateRoute>
+            }
+          />
+
+          {/* === SHARED === */}
+          <Route
+            path="/biblioteca-fx-audio"
+            element={
+              <PrivateRoute
+                allowedRoles={["admin", "operador", "productor"]}
+              >
+                <BibliotecaFXAudio />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/mis-efectos-audio"
+            element={
+              <PrivateRoute
+                allowedRoles={["admin", "operador", "productor"]}
+              >
+                <MisEfectosAudio />
+              </PrivateRoute>
+            }
+          />
+
+          {/* PERFIL */}
+          <Route
+            path="/perfil"
+            element={
+              <PrivateRoute
+                allowedRoles={["admin", "operador", "productor"]}
+              >
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+    </>
   );
 }
 

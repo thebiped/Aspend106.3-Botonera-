@@ -1,18 +1,21 @@
-body {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto";
+  
 }
 
-.dashboard-root {
-  min-height: 100vh;
-  display: flex;          /* Sidebar + Container */
-  font-family: "Roboto";
+.app-main.with-sidebar {
+  height: 100vh;
+  margin-left: 250px;
+  color: #fff;
+  font-family: "Roboto" ;
 }
 
 .container {
   position: relative;
-  flex: 1;                /* ✅ ocupa el espacio restante a la derecha */
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -20,49 +23,6 @@ body {
   background: #0c0a25;
   overflow: hidden;
   z-index: 1;
-}
-
-.main-container {
-  flex: 1;                /* ✅ ocupa el espacio vertical sobrante */
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  padding: 24px;
-  z-index: 2;
-}
-
-.container-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("./assets/img/fondo-container.png") no-repeat center
-    center/cover;
-  filter: blur(2px) brightness(0.5) contrast(4);
-  z-index: 1;
-}
-
-.container-bg::after {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(20deg, #0e024e 0%, #000b29 100%);
-  filter: hue-rotate(20deg) saturate(5);
-  opacity: 0.5;
-  z-index: 1;
-}
-
-.main-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  padding: 24px;
-  z-index: 2;
 }
 
 .sparkle-button {
@@ -78,7 +38,7 @@ body {
       transparent
     ),
     hsl(260 50% 35%);
-  
+
   position: relative;
   display: flex;
   align-items: center;
@@ -94,10 +54,9 @@ body {
   cursor: pointer;
   box-shadow: 0 0 calc(var(--active) * 2.5em) calc(var(--active) * 0.6em)
       hsl(260 97% 61% / 0.75),
-    0 0em 0 0 hsl(260 calc(var(--active) * 97%) calc((var(--active) * 50%) + 30%))
-      inset,
-    0 -0.05em 0 0 hsl(260 calc(var(--active) * 97%) calc(var(--active) * 60%))
-      inset;
+    0 0em 0 0
+      hsl(260 calc(var(--active) * 97%) calc((var(--active) * 50%) + 30%)) inset,
+    0 -0.05em 0 0 hsl(260 calc(var(--active) * 97%) calc(var(--active) * 60%)) inset;
 
   scale: calc(1 + (var(--active) * 0.1));
   transition: background 0.3s, box-shadow 0.3s, scale 0.3s;
@@ -174,16 +133,16 @@ body {
   }
 }
 
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 @keyframes fadeScaleUp {
   0% {
@@ -247,7 +206,6 @@ body {
   }
 }
 
-
 @keyframes fadeInRows {
   to {
     opacity: 1;
@@ -256,6 +214,10 @@ body {
 }
 
 @keyframes rotateBorder {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
