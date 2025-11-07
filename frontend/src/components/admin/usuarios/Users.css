@@ -243,17 +243,6 @@
   text-decoration: underline;
   text-shadow: 0 0 4px rgba(181, 54, 255, 0.5);
 }
-<<<<<<< HEAD
-.users-role-operador { background: #1a8cff; }
-.users-role-jefedeoperadores { background: #1686e1; }
-.users-role-productor { background: #b536ff; }
-@keyframes fadeInRows {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-=======
 
 /* -------------------- Skeleton Loading -------------------- */
 .loading-skeleton {
@@ -285,4 +274,3 @@
 
 @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeInTable { to { opacity: 1; transform: translateY(0); } }
->>>>>>> 924de830270eeb7464e66c0aaa5729f553318cba

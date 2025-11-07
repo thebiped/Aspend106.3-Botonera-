@@ -1,20 +1,7 @@
-<<<<<<< HEAD:frontend/src/components/operador/programas/detalle/ProgramaDetalle.css
-/* Header del programa */
-.pd-programs-header-details {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.pd-title {
-  font-family: "Koh Santepheap", sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-=======
 
 .biblioteca-fx-audio {
     height: 100vh;
   padding: 24px;
->>>>>>> 924de830270eeb7464e66c0aaa5729f553318cba:frontend/src/components/shared/BibliotecaFXAudio.css
   color: #fff;
   font-family: "Roboto" ;
   background: #0c0a25;
